@@ -1,20 +1,30 @@
 import React from "react";
-import Screen1 from "./Screen1";
-import Screen2 from "./Screen2";
+import { initState } from "./components/initialState";
+import Login from "./components/Login/Login";
+import Cart from "./components/Cart/Cart";
 
 class CodeCommerce extends React.Component {
   constructor() {
     super()
-    this.state = {
-      isLoggedIn: false,
-    }
+    this.state = initState
   }
+
+  toggleDisplay = (name) => this.setState((prevState) => {
+    return {
+      processState: {
+        ...prevState['processState'],
+        [name]: {
+          isDisplayed: !prevState['processState'][name]['isDisplayed'],
+        }
+      }
+    }
+  })
 
   render() {
     return (
       <div>
-        {!this.state.isLoggedIn && <Screen1 info={this.state} />}
-        {this.state.isLoggedIn && <Screen2 info={this.state} />}
+        {this.state.processState.login.isDisplayed && <Login info={this.state} toggleDisplay={this.toggleDisplay} />}
+        {this.state.processState.cart.isDisplayed && <Cart info={this.state} toggleDisplay={this.toggleDisplay} />}
       </div>
     )
   }
