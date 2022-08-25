@@ -5,7 +5,7 @@ class SignUp extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToLogin = () => {
-    this.toggleDisplay(displayNames.signup)
+    this.toggleDisplay(displayNames.signUp)
     this.toggleDisplay(displayNames.login)
   }
 

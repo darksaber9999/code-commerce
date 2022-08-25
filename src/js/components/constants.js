@@ -5,6 +5,6 @@ export const displayNames = {
   payment: 'payment',
   progress: 'progress',
   shipping: 'shipping',
-  signup: 'signup',
+  signUp: 'signUp',
   store: 'store',
 }

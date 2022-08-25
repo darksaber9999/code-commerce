@@ -23,7 +23,7 @@ const processState = {
     isDisplayed: false,
   },
   login: {
-    isDisplayed: true,
+    isDisplayed: false,
   },
   payment: {
     isDisplayed: false,
@@ -34,11 +34,11 @@ const processState = {
   shipping: {
     isDisplayed: false,
   },
-  signup: {
+  signUp: {
     isDisplayed: false,
   },
   store: {
-    isDisplayed: false,
+    isDisplayed: true,
   },
 }
 

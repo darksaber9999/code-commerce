@@ -29,6 +29,10 @@ class CodeCommerce extends React.Component {
   render() {
     return (
       <div>
+        <div className="store-header">
+          <h1>The Code Corner</h1>
+          <p>Your one stop shop for all the lines of code you can handle!</p>
+        </div>
         {this.state.processState.login.isDisplayed &&
           <Login
             info={this.state}
@@ -71,7 +75,7 @@ class CodeCommerce extends React.Component {
             toggleDisplay={this.toggleDisplay}
           />
         }
-        {this.state.processState.signup.isDisplayed &&
+        {this.state.processState.signUp.isDisplayed &&
           <SignUp
             info={this.state}
             toggleDisplay={this.toggleDisplay}

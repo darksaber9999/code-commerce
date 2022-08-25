@@ -6,7 +6,7 @@ class Store extends React.Component {
 
   goToSignUp = () => {
     this.toggleDisplay(displayNames.store)
-    this.toggleDisplay(displayNames.signup)
+    this.toggleDisplay(displayNames.signUp)
   }
 
   render() {
