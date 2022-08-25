@@ -1,22 +1,22 @@
 import React from "react";
 import { displayNames } from "../constants";
 
-class Cart extends React.Component {
+class Shipping extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
-  goToShipping = () => {
-    this.toggleDisplay(displayNames.cart)
+  goToPayment = () => {
     this.toggleDisplay(displayNames.shipping)
+    this.toggleDisplay(displayNames.payment)
   }
 
   render() {
     return (
       <div>
-        <div>Cart</div>
-        <button onClick={this.goToShipping}>Click me</button>
+        <div>Shipping</div>
+        <button onClick={this.goToPayment}>Click me</button>
       </div>
     )
   }
 }
 
-export default Cart;
+export default Shipping;

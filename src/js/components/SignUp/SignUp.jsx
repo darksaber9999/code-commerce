@@ -1,22 +1,22 @@
 import React from "react";
 import { displayNames } from "../constants";
 
-class Login extends React.Component {
+class SignUp extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
-  goToCart = () => {
+  goToLogin = () => {
+    this.toggleDisplay(displayNames.signup)
     this.toggleDisplay(displayNames.login)
-    this.toggleDisplay(displayNames.cart)
   }
 
   render() {
     return (
       <div>
-        <div>Login</div>
-        <button onClick={this.goToCart}>Click me</button>
+        <div>Sign Up</div>
+        <button onClick={this.goToLogin}>Click me</button>
       </div>
     )
   }
 }
 
-export default Login;
+export default SignUp;
