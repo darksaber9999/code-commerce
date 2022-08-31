@@ -1,4 +1,5 @@
 export const displayNames = {
+  authWindow: 'authWindow',
   cart: 'cart',
   confirm: 'confirm',
   login: 'login',

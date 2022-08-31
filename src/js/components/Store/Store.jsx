@@ -5,16 +5,16 @@ import StoreItems from "./StoreItems";
 class Store extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
-  goToSignUp = () => {
+  goToAuthWindow = () => {
     this.toggleDisplay(displayNames.store)
-    this.toggleDisplay(displayNames.signUp)
+    this.toggleDisplay(displayNames.authWindow)
   }
 
   render() {
     return (
       <div>
         <div>Store</div>
-        <button onClick={this.goToSignUp}>Click me</button>
+        <button onClick={this.goToAuthWindow}>Click me</button>
         <StoreItems info={this.props.info} />
       </div>
     )

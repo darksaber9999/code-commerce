@@ -1,5 +1,7 @@
 import React from "react";
 import { initState } from "./components/initialState";
+import AuthWindow from "./components/AuthWindow/AuthWindow";
+import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Shipping/Shipping";
@@ -7,7 +9,6 @@ import Payment from "./components/Payment/Payment";
 import Confirm from "./components/Confirm/Confirm";
 import Progress from "./components/Progress/Progress";
 import Store from "./components/Store/Store";
-import SignUp from "./components/SignUp/SignUp";
 
 class CodeCommerce extends React.Component {
   constructor() {
@@ -33,6 +34,18 @@ class CodeCommerce extends React.Component {
           <h1>The Code Corner</h1>
           <p>Your one stop shop for all the lines of code you can handle!</p>
         </div>
+        {this.state.processState.authWindow.isDisplayed &&
+          <AuthWindow
+            info={this.state}
+            toggleDisplay={this.toggleDisplay}
+          />
+        }
+        {this.state.processState.signUp.isDisplayed &&
+          <SignUp
+            info={this.state}
+            toggleDisplay={this.toggleDisplay}
+          />
+        }
         {this.state.processState.login.isDisplayed &&
           <Login
             info={this.state}
@@ -71,12 +84,6 @@ class CodeCommerce extends React.Component {
         }
         {this.state.processState.store.isDisplayed &&
           <Store
-            info={this.state}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.signUp.isDisplayed &&
-          <SignUp
             info={this.state}
             toggleDisplay={this.toggleDisplay}
           />

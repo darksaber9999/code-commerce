@@ -22,6 +22,9 @@ const dummyUser = {
 }
 
 const processState = {
+  authWindow: {
+    isDisplayed: false,
+  },
   cart: {
     isDisplayed: false,
   },
