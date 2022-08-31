@@ -8,3 +8,10 @@ export const displayNames = {
   signUp: 'signUp',
   store: 'store',
 }
+
+export const storeItemTitles = [
+  'html',
+  'css',
+  'javascript',
+  'react',
+]

@@ -1,0 +1,51 @@
+.storeItemsContainer {
+  max-width: 700px;
+  margin: auto;
+  background-color: dimgray;
+  padding: 15px 25px;
+  border-radius: 16px;
+}
+
+.storeItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.storeItem:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+.imageWrapper {
+  max-width: 400px;
+}
+
+.imageWrapper img {
+  border-radius: 8px;
+}
+
+.infoWrapper {
+  font-size: initial;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .storeItem {
+    flex-direction: column;
+  }
+
+  .infoWrapper {
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+
+  .infoWrapper button {
+    flex-basis: 100%;
+  }
+}

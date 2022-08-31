@@ -1,4 +1,8 @@
-import codeImage from '../assets/chris-ried-ieic5Tq8YMk-unsplash.jpg';
+import codeImageHTML from "../assets/valery-sysoev-p9OkL4yW3C8-unsplash.jpg"
+import codeImageCSS from "../assets/nick-karvounis-TkZYCXmrKK4-unsplash.jpg"
+import codeImageJS from "../assets/joan-gamell-XmZ4GDAp9G0-unsplash.jpg"
+import codeImageReact from "../assets/ferenc-almasi-c8h0n7fSTqs-unsplash.jpg"
+
 
 export const INIT_USER_CARD = {
   password: '',
@@ -44,35 +48,28 @@ const processState = {
   },
 }
 
-export const storeItemTitles = [
-  'html',
-  'css',
-  'javascript',
-  'react',
-];
-
 const storeItems = {
   html: {
     title: 'HTML',
-    image: codeImage,
+    image: codeImageHTML,
     amountOfWork: 'Up to 500 lines of code',
     price: 149.99,
   },
   css: {
     title: 'CSS',
-    image: codeImage,
+    image: codeImageCSS,
     amountOfWork: 'Up to 250 lines of code',
     price: 199.99,
   },
   javascript: {
     title: 'JavaScript',
-    image: codeImage,
+    image: codeImageJS,
     amountOfWork: 'Up to 200 lines of code',
     price: 299.99,
   },
   react: {
     title: 'React',
-    image: codeImage,
+    image: codeImageReact,
     amountOfWork: 'Up to 300 lines of code',
     price: 499.99,
   },

@@ -1,5 +1,6 @@
 import React from "react";
-import { storeItemTitles } from "../initialState";
+import { storeItemTitles } from "../constants";
+import s from "./StoreItems.module.css";
 
 class StoreItems extends React.Component {
   constructor(props) {
@@ -11,17 +12,21 @@ class StoreItems extends React.Component {
     const { storeItems } = info;
 
     return (
-      <div className="store-items-container">
+      <div className={s.storeItemsContainer}>
         {storeItemTitles.map((val) => {
           const { title, image, amountOfWork, price } = storeItems[val];
 
           return (
-            <div className="store-item">
-              <h3>{title}</h3>
-              <img src={image} alt="code image" />
-              <p>{amountOfWork}</p>
-              <h4>{price}</h4>
-              <button>Add to Cart</button>
+            <div className={s.storeItem}>
+              <div className={s.imageWrapper}>
+                <img src={image} alt="code image" />
+              </div>
+              <div className={s.infoWrapper}>
+                <h3>{title}</h3>
+                <p>{amountOfWork}</p>
+                <h4>{price}</h4>
+                <button>Add to Cart</button>
+              </div>
             </div>
           )
         })}
