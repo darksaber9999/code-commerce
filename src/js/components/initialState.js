@@ -32,7 +32,7 @@ const processState = {
     isDisplayed: false,
   },
   login: {
-    isDisplayed: false,
+    isDisplayed: true,
   },
   payment: {
     isDisplayed: false,

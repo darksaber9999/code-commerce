@@ -31,6 +31,7 @@
   flex-direction: column;
   margin-left: 30px;
   width: 100%;
+  align-items: center;
 }
 
 @media (max-width: 600px) {
@@ -46,6 +47,15 @@
   }
 
   .infoWrapper button {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 460px) {
+
+  .infoWrapper h3,
+  .infoWrapper p,
+  .infoWrapper h4 {
     flex-basis: 100%;
   }
 }

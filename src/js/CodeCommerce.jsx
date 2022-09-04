@@ -1,8 +1,6 @@
 import React from "react";
 import { initState } from "./components/initialState";
 import AuthWindow from "./components/AuthWindow/AuthWindow";
-import SignUp from "./components/SignUp/SignUp";
-import Login from "./components/Login/Login";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Shipping/Shipping";
 import Payment from "./components/Payment/Payment";
@@ -36,18 +34,6 @@ class CodeCommerce extends React.Component {
         </div>
         {this.state.processState.authWindow.isDisplayed &&
           <AuthWindow
-            info={this.state}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.signUp.isDisplayed &&
-          <SignUp
-            info={this.state}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.login.isDisplayed &&
-          <Login
             info={this.state}
             toggleDisplay={this.toggleDisplay}
           />
