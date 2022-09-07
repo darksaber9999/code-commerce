@@ -3,9 +3,6 @@ import { storeItemTitles } from "../constants";
 import s from "./StoreItems.module.css";
 
 class StoreItems extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const { info } = this.props;
@@ -14,12 +11,12 @@ class StoreItems extends React.Component {
     return (
       <div className={s.storeItemsContainer}>
         {storeItemTitles.map((val) => {
-          const { title, image, amountOfWork, price } = storeItems[val];
+          const { key, title, image, amountOfWork, price } = storeItems[val];
 
           return (
-            <div className={s.storeItem}>
+            <div key={key} className={s.storeItem}>
               <div className={s.imageWrapper}>
-                <img src={image} alt="code image" />
+                <img src={image} alt="computer code on a screen" />
               </div>
               <div className={s.infoWrapper}>
                 <h3>{title}</h3>

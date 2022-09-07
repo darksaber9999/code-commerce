@@ -32,8 +32,8 @@ class Login extends React.Component {
     }
 
     const inputData = [
-      { id: 'emailAddress', label: 'Email Address', name: 'email', type: 'text', error: 'emailError' },
-      { id: 'password', label: 'Password', name: 'password', type: 'password', error: 'passwordError' },
+      { key: 1, id: 'emailAddress', label: 'Email Address', name: 'email', type: 'text', error: 'emailError' },
+      { key: 2, id: 'password', label: 'Password', name: 'password', type: 'password', error: 'passwordError' },
     ]
 
     const passwordMask = () => {
@@ -49,6 +49,7 @@ class Login extends React.Component {
         <form style={tempStyle} onSubmit={this.handleSubmit}>
           {inputData.length ? inputData.map((item) => (
             <input
+              key={item.key}
               id={item.id}
               autoComplete="off"
               placeholder={item.label}

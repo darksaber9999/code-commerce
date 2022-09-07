@@ -54,24 +54,28 @@ const processState = {
 
 const storeItems = {
   html: {
+    key: 1,
     title: 'HTML',
     image: codeImageHTML,
     amountOfWork: 'Up to 500 lines of code',
     price: 149.99,
   },
   css: {
+    key: 2,
     title: 'CSS',
     image: codeImageCSS,
     amountOfWork: 'Up to 250 lines of code',
     price: 199.99,
   },
   javascript: {
+    key: 3,
     title: 'JavaScript',
     image: codeImageJS,
     amountOfWork: 'Up to 200 lines of code',
     price: 299.99,
   },
   react: {
+    key: 4,
     title: 'React',
     image: codeImageReact,
     amountOfWork: 'Up to 300 lines of code',
