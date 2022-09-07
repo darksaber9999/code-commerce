@@ -17,6 +17,7 @@ const dummyUser = {
   password: 'password1',
   firstName: 'Dummy',
   lastName: 'User',
+  postalCode: 0,
   emailAddress: 'dummy@useremail.com',
   cart: {},
 }
@@ -80,9 +81,9 @@ const storeItems = {
 
 export const initState = {
   isLoggedIn: false,
-  currentUsers: {
+  currentUsers: [
     dummyUser
-  },
+  ],
   processState,
   storeItems,
 }

@@ -28,10 +28,16 @@ class AuthWindow extends React.Component {
           <span>Login</span>
         </div>
         {this.props.info.processState.signUp.isDisplayed &&
-          <SignUp />
+          <SignUp
+            info={this.props.info}
+          />
         }
         {this.props.info.processState.login.isDisplayed &&
-          <Login />
+          <Login
+            info={this.props.info}
+            toggleIsLoggedIn={this.props.toggleIsLoggedIn}
+            goToCart={this.goToCart}
+          />
         }
       </div>
     )

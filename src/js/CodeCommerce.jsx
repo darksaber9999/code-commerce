@@ -14,6 +14,8 @@ class CodeCommerce extends React.Component {
     this.state = initState
   }
 
+  toggleIsLoggedIn = () => this.setState((prevState) => ({ isLoggedIn: !(prevState.isLoggedIn) }))
+
   toggleDisplay = (name) => this.setState((prevState) => {
     return {
       processState: {
@@ -35,6 +37,7 @@ class CodeCommerce extends React.Component {
         {this.state.processState.authWindow.isDisplayed &&
           <AuthWindow
             info={this.state}
+            toggleIsLoggedIn={this.toggleIsLoggedIn}
             toggleDisplay={this.toggleDisplay}
           />
         }
