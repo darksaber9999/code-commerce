@@ -5,20 +5,20 @@ import codeImageReact from "../assets/ferenc-almasi-c8h0n7fSTqs-unsplash.jpg"
 
 
 export const INIT_USER_CARD = {
+  emailAddress: '',
   password: '',
   passwordConfirm: '',
   firstName: '',
   lastName: '',
-  emailAddress: '',
-  cart: {},
+  postalCode: null,
 }
 
 const dummyUser = {
+  emailAddress: 'dummy@useremail.com',
   password: 'password1',
   firstName: 'Dummy',
   lastName: 'User',
   postalCode: 0,
-  emailAddress: 'dummy@useremail.com',
   cart: {},
 }
 
