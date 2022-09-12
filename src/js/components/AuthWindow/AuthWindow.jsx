@@ -38,6 +38,7 @@ class AuthWindow extends React.Component {
           <Login
             info={this.props.info}
             toggleIsLoggedIn={this.props.toggleIsLoggedIn}
+            setLoggedInUser={this.props.setLoggedInUser}
             goToCart={this.goToCart}
           />
         }

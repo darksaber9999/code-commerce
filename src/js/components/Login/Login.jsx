@@ -5,8 +5,9 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 class Login extends React.Component {
 
-  signInSuccess = () => {
+  signInSuccess = (user) => {
     this.props.toggleIsLoggedIn();
+    this.props.setLoggedInUser(user);
     this.props.goToCart();
   }
 
@@ -16,7 +17,7 @@ class Login extends React.Component {
 
     this.props.info.currentUsers.map((user) => {
       if (user.emailAddress === e.target[0].value && user.password === e.target[1].value) {
-        this.signInSuccess();
+        this.signInSuccess(user);
         return true;
       }
       return false;

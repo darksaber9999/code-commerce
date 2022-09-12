@@ -1,24 +1,20 @@
 import React from "react";
-import { storeItemTitles } from "../constants";
-import s from "./StoreItems.module.css";
+import s from "./CartItems.module.css";
 
-class StoreItems extends React.Component {
-
-  addToCart = (e) => {
-    this.props.addToCart(e.target.dataset.item.toLowerCase());
-  }
+class CartItems extends React.Component {
 
   render() {
     const { info } = this.props;
-    const { storeItems } = info;
+    const { loggedInUser, storeItems } = info;
+    const { cart } = loggedInUser;
 
     return (
-      <div className={s.storeItemsContainer}>
-        {storeItemTitles.map((val) => {
+      <div className={s.cartItemsContainer}>
+        {cart.map((val) => {
           const { key, title, image, amountOfWork, price } = storeItems[val];
 
           return (
-            <div key={key} className={s.storeItem}>
+            <div key={key} className={s.cartItem}>
               <div className={s.imageWrapper}>
                 <img src={image} alt="computer code on a screen" />
               </div>
@@ -26,7 +22,6 @@ class StoreItems extends React.Component {
                 <h3>{title}</h3>
                 <p>{amountOfWork}</p>
                 <h4>{price}</h4>
-                <button data-item={title} onClick={this.addToCart}>Add to Cart</button>
               </div>
             </div>
           )
@@ -36,4 +31,4 @@ class StoreItems extends React.Component {
   }
 }
 
-export default StoreItems;
+export default CartItems;
