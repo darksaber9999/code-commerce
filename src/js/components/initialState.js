@@ -85,6 +85,7 @@ const storeItems = {
 
 export const initState = {
   isLoggedIn: false,
+  loggedInUser: {},
   currentUsers: [
     dummyUser
   ],
