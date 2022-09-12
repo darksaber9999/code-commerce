@@ -15,7 +15,7 @@ class SignUp extends React.Component {
       firstName: e.target[3].value,
       lastName: e.target[4].value,
       postalCode: e.target[5].value,
-      cart: {},
+      cart: [],
     }
 
     this.props.addUser(newUser);

@@ -19,7 +19,7 @@ const dummyUser = {
   firstName: 'Dummy',
   lastName: 'User',
   postalCode: 0,
-  cart: {},
+  cart: [],
 }
 
 const processState = {
