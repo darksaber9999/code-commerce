@@ -21,10 +21,14 @@ class CodeCommerce extends React.Component {
   addUser = (newUser) => this.setState((prevState) => ({ currentUsers: prevState['currentUsers'].concat([newUser]) }))
 
   addToCart = (item) => this.setState((prevState) => {
+    const amount = prevState.loggedInUser.cart.has(item) ?
+      (prevState.loggedInUser.cart.get(item) + 1) :
+      1;
+
     return {
       loggedInUser: {
         ...prevState['loggedInUser'],
-        cart: prevState['loggedInUser']['cart'].concat([item]),
+        cart: prevState['loggedInUser']['cart'].set(item, amount),
       }
     }
   })

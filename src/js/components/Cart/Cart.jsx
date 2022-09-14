@@ -19,10 +19,10 @@ class Cart extends React.Component {
         {isEmpty(this.props.info.loggedInUser) &&
           <h2>Please log in to add an item to the cart.</h2>
         }
-        {(!isEmpty(this.props.info.loggedInUser) && isEmpty(this.props.info.loggedInUser.cart)) &&
+        {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size === 0) &&
           <h2>Your cart is currently empty. Add an item.</h2>
         }
-        {(!isEmpty(this.props.info.loggedInUser) && !isEmpty(this.props.info.loggedInUser.cart)) &&
+        {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size > 0) &&
           <CartItems info={this.props.info} />
         }
       </div>
