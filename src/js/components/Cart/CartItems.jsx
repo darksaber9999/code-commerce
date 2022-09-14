@@ -14,7 +14,7 @@ class CartItems extends React.Component {
         {storeItemTitles.map((val) => {
           if (cart.has(val)) {
             const { key, title, image, amountOfWork, price } = storeItems[val];
-            const quantity = cart.get(val);
+            const quantity = cart.get(val) / 2;
 
             // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
             console.log(val);
@@ -27,7 +27,7 @@ class CartItems extends React.Component {
                 <div className={s.infoWrapper}>
                   <h3>{title}</h3>
                   <p>{amountOfWork}</p>
-                  <h4>Quantity: {quantity / 2}</h4>
+                  <h4>Quantity: {quantity}</h4>
                   <h4>{price * quantity}</h4>
                 </div>
               </div>
