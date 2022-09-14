@@ -18,6 +18,7 @@ class Store extends React.Component {
         <StoreItems
           info={this.props.info}
           addToCart={this.props.addToCart}
+          goToAuthWindow={this.goToAuthWindow}
         />
       </div>
     )

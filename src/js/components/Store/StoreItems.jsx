@@ -5,7 +5,9 @@ import s from "./StoreItems.module.css";
 class StoreItems extends React.Component {
 
   addToCart = (e) => {
-    this.props.addToCart(e.target.dataset.item.toLowerCase());
+    this.props.info.isLoggedIn ?
+      this.props.addToCart(e.target.dataset.item.toLowerCase()) :
+      this.props.goToAuthWindow();
   }
 
   render() {
