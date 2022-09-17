@@ -10,11 +10,17 @@ class Store extends React.Component {
     this.toggleDisplay(displayNames.authWindow)
   }
 
+  goToCart = () => {
+    this.toggleDisplay(displayNames.store)
+    this.toggleDisplay(displayNames.cart)
+  }
+
   render() {
     return (
       <div>
         <div>Store</div>
-        <button onClick={this.goToAuthWindow}>Click me</button>
+        <button onClick={this.goToAuthWindow}>Login/Sign Up</button>
+        <button onClick={this.goToCart}>Go to Cart</button>
         <StoreItems
           info={this.props.info}
           addToCart={this.props.addToCart}

@@ -13,7 +13,7 @@ class Shipping extends React.Component {
     return (
       <div>
         <div>Shipping</div>
-        <button onClick={this.goToPayment}>Click me</button>
+        <button onClick={this.goToPayment}>Payment</button>
       </div>
     )
   }

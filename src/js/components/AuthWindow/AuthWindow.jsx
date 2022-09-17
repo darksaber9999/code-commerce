@@ -11,6 +11,11 @@ class AuthWindow extends React.Component {
     this.toggleDisplay(displayNames.cart)
   }
 
+  goToStore = () => {
+    this.toggleDisplay(displayNames.authWindow)
+    this.toggleDisplay(displayNames.store)
+  }
+
   swapAuthOption = () => {
     this.toggleDisplay(displayNames.signUp)
     this.toggleDisplay(displayNames.login)
@@ -20,7 +25,7 @@ class AuthWindow extends React.Component {
     return (
       <div>
         <div>Auth Window</div>
-        <button onClick={this.goToCart}>Click me</button>
+        <button onClick={this.goToStore}>Back to Store</button>
         <div onChange={this.swapAuthOption}>
           <input type="radio" value="login" name="authOption" defaultChecked={this.props.info.processState.login.isDisplayed} />
           <span>Login</span>

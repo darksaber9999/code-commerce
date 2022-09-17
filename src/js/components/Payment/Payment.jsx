@@ -13,7 +13,7 @@ class Payment extends React.Component {
     return (
       <div>
         <div>Payment</div>
-        <button onClick={this.goToConfirm}>Click me</button>
+        <button onClick={this.goToConfirm}>Pay</button>
       </div>
     )
   }

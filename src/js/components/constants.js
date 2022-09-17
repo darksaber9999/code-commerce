@@ -15,4 +15,5 @@ export const storeItemTitles = [
   'css',
   'javascript',
   'react',
+  'everything',
 ]

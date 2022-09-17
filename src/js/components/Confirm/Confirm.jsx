@@ -4,16 +4,16 @@ import { displayNames } from "../constants";
 class Confirm extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
-  goToProgress = () => {
+  goToCart = () => {
     this.toggleDisplay(displayNames.confirm)
-    this.toggleDisplay(displayNames.progress)
+    this.toggleDisplay(displayNames.cart)
   }
 
   render() {
     return (
       <div>
         <div>Confirm</div>
-        <button onClick={this.goToProgress}>Click me</button>
+        <button onClick={this.goToCart}>Back to Cart</button>
       </div>
     )
   }

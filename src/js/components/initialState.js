@@ -14,8 +14,8 @@ export const INIT_USER_CARD = {
 }
 
 const dummyUser = {
-  emailAddress: 'dummy@useremail.com',
-  password: 'password1',
+  emailAddress: 'test@email.com',
+  password: 'test',
   firstName: 'Dummy',
   lastName: 'User',
   postalCode: 0,
@@ -80,6 +80,13 @@ const storeItems = {
     image: codeImageReact,
     amountOfWork: 'Up to 300 lines of code',
     price: 499.99,
+  },
+  everything: {
+    key: 5,
+    title: 'Everything',
+    image: null,
+    amountOfWork: 'Up to 1500 total lines of code',
+    price: 999.99
   },
 }
 

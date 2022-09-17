@@ -7,15 +7,21 @@ class Cart extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToShipping = () => {
-    this.toggleDisplay(displayNames.cart)
-    this.toggleDisplay(displayNames.shipping)
+    this.toggleDisplay(displayNames.cart);
+    this.toggleDisplay(displayNames.shipping);
+  }
+
+  goToStore = () => {
+    this.toggleDisplay(displayNames.cart);
+    this.toggleDisplay(displayNames.store);
   }
 
   render() {
     return (
       <div>
         <div>Cart</div>
-        <button onClick={this.goToShipping}>Click me</button>
+        <button onClick={this.goToStore}>Back to Store</button>
+        <button onClick={this.goToShipping}>Checkout</button>
         {isEmpty(this.props.info.loggedInUser) &&
           <h2>Please log in to add an item to the cart.</h2>
         }
