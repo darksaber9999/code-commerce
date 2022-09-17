@@ -2,6 +2,7 @@ import codeImageHTML from "../assets/valery-sysoev-p9OkL4yW3C8-unsplash.jpg"
 import codeImageCSS from "../assets/nick-karvounis-TkZYCXmrKK4-unsplash.jpg"
 import codeImageJS from "../assets/joan-gamell-XmZ4GDAp9G0-unsplash.jpg"
 import codeImageReact from "../assets/ferenc-almasi-c8h0n7fSTqs-unsplash.jpg"
+import codeImageEverything from "../assets/daniel-korpai-pKRNxEguRgM-unsplash.jpg"
 
 
 export const INIT_USER_CARD = {
@@ -84,7 +85,7 @@ const storeItems = {
   everything: {
     key: 5,
     title: 'Everything',
-    image: null,
+    image: codeImageEverything,
     amountOfWork: 'Up to 1500 total lines of code',
     price: 999.99
   },
