@@ -40,7 +40,10 @@ class Cart extends React.Component {
         }
         {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size > 0) &&
           <div className={s.cartWindow}>
-            <CartItems info={this.props.info} />
+            <CartItems
+              info={this.props.info}
+              removeFromCart={this.props.removeFromCart}
+            />
             <CartSummary
               info={this.props.info}
               goToShipping={this.goToShipping}

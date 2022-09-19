@@ -2,7 +2,10 @@ import React from "react";
 import { storeItemTitles } from "../constants";
 import s from "./CartItems.module.css";
 
+
 class CartItems extends React.Component {
+
+  handleRemoveItem = (e) => this.props.removeFromCart(e.target.id);
 
   render() {
     const { info } = this.props;
@@ -21,6 +24,7 @@ class CartItems extends React.Component {
 
             return (
               <div key={key} className={s.cartItem}>
+                <button id={val} onClick={this.handleRemoveItem}>X</button>
                 <div className={s.imageWrapper}>
                   <img src={image} alt="computer code on a screen" />
                 </div>
