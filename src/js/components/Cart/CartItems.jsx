@@ -27,6 +27,7 @@ class CartItems extends React.Component {
                 <div className={s.infoWrapper}>
                   <h3>{title}</h3>
                   <p>{amountOfWork}</p>
+                  <h4>{price}</h4>
                   <h4>Quantity: {quantity}</h4>
                   <h4>{price * quantity}</h4>
                 </div>

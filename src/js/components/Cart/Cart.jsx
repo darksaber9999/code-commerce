@@ -2,9 +2,16 @@ import React from "react";
 import { displayNames } from "../constants";
 import { isEmpty } from "../validations";
 import CartItems from "./CartItems";
+import CartSummary from "./CartSummary";
+import s from "./Cart.module.css";
 
 class Cart extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
+
+  goToAuthWindow = () => {
+    this.toggleDisplay(displayNames.cart);
+    this.toggleDisplay(displayNames.authWindow);
+  }
 
   goToShipping = () => {
     this.toggleDisplay(displayNames.cart);
@@ -19,17 +26,27 @@ class Cart extends React.Component {
   render() {
     return (
       <div>
-        <div>Cart</div>
-        <button onClick={this.goToStore}>Back to Store</button>
-        <button onClick={this.goToShipping}>Checkout</button>
         {isEmpty(this.props.info.loggedInUser) &&
-          <h2>Please log in to add an item to the cart.</h2>
+          <div>
+            <h2>Please log in to add an item to the cart.</h2>
+            <button onClick={this.goToAuthWindow}>Login/Sign Up</button>
+          </div>
         }
         {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size === 0) &&
-          <h2>Your cart is currently empty. Add an item.</h2>
+          <div>
+            <h2>Your cart is currently empty. Add an item.</h2>
+            <button onClick={this.goToStore}>Go to Store</button>
+          </div>
         }
         {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size > 0) &&
-          <CartItems info={this.props.info} />
+          <div className={s.cartWindow}>
+            <CartItems info={this.props.info} />
+            <CartSummary
+              info={this.props.info}
+              goToShipping={this.goToShipping}
+              goToStore={this.goToStore}
+            />
+          </div>
         }
       </div>
     )
