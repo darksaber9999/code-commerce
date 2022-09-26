@@ -43,6 +43,21 @@ class CodeCommerce extends React.Component {
     }
   })
 
+  changeQuantity = (method, item) => this.setState((prevState) => {
+    let tempAmount = prevState.loggedInUser.cart.get(item);
+    (method === 'add') ?
+      prevState.loggedInUser.cart.set(item, tempAmount + 1) :
+      (tempAmount === 1) ?
+        prevState.loggedInUser.cart.delete(item) :
+        prevState.loggedInUser.cart.set(item, tempAmount - 1);
+    return {
+      loggedInUser: {
+        ...prevState['loggedInUser'],
+        cart: prevState['loggedInUser']['cart'],
+      }
+    }
+  })
+
   toggleDisplay = (name) => this.setState((prevState) => {
     return {
       processState: {
@@ -74,6 +89,7 @@ class CodeCommerce extends React.Component {
           <Cart
             info={this.state}
             removeFromCart={this.removeFromCart}
+            changeQuantity={this.changeQuantity}
             toggleDisplay={this.toggleDisplay}
           />
         }

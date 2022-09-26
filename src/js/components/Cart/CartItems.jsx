@@ -7,6 +7,8 @@ class CartItems extends React.Component {
 
   handleRemoveItem = (e) => this.props.removeFromCart(e.target.id);
 
+  changeQuantity = (e) => this.props.changeQuantity(e.target.id, e.target.classList[0]);
+
   render() {
     const { info } = this.props;
     const { loggedInUser, storeItems } = info;
@@ -32,7 +34,12 @@ class CartItems extends React.Component {
                   <h3>{title}</h3>
                   <p>{amountOfWork}</p>
                   <h4>{price}</h4>
-                  <h4>Quantity: {quantity}</h4>
+                  <h4>Quantity: </h4>
+                  <span>
+                    <button id="subtract" className={val} onClick={this.changeQuantity}>-</button>
+                    <h4>{quantity}</h4>
+                    <button id="add" className={val} onClick={this.changeQuantity}>+</button>
+                  </span>
                   <h4>{price * quantity}</h4>
                 </div>
               </div>

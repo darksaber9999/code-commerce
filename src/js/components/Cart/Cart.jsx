@@ -43,6 +43,7 @@ class Cart extends React.Component {
             <CartItems
               info={this.props.info}
               removeFromCart={this.props.removeFromCart}
+              changeQuantity={this.props.changeQuantity}
             />
             <CartSummary
               info={this.props.info}
