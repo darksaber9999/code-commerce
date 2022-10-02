@@ -14,6 +14,20 @@ export const INIT_USER_CARD = {
   postalCode: null,
 }
 
+export const INIT_SHIPPING_CARD = {
+  addressTitle: '',
+  name: '',
+  addressLine1: '',
+  addressLine2: '',
+  city: '',
+  state: '',
+  country: '',
+  zipCode: null,
+  cellPhoneNumber: null,
+  otherPhoneNumber: null,
+  shipping: false,
+}
+
 const dummyUser = {
   emailAddress: 'test@email.com',
   password: 'test',

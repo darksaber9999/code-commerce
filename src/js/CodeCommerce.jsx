@@ -58,6 +58,15 @@ class CodeCommerce extends React.Component {
     }
   })
 
+  addShippingInfo = (info) => this.setState((prevState) => {
+    return {
+      loggedInUser: {
+        ...prevState['loggedInUser'],
+        shippingInfo: info,
+      }
+    }
+  })
+
   toggleDisplay = (name) => this.setState((prevState) => {
     return {
       processState: {
@@ -96,6 +105,7 @@ class CodeCommerce extends React.Component {
         {this.state.processState.shipping.isDisplayed &&
           <Shipping
             info={this.state}
+            addShippingInfo={this.addShippingInfo}
             toggleDisplay={this.toggleDisplay}
           />
         }
