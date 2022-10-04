@@ -22,9 +22,9 @@ export const INIT_SHIPPING_CARD = {
   city: '',
   state: '',
   country: '',
-  zipCode: null,
-  cellPhoneNumber: null,
-  otherPhoneNumber: null,
+  zipCode: '',
+  cellPhoneNumber: '',
+  otherPhoneNumber: '',
   shipping: '',
 }
 
