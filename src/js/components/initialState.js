@@ -25,7 +25,7 @@ export const INIT_SHIPPING_CARD = {
   zipCode: null,
   cellPhoneNumber: null,
   otherPhoneNumber: null,
-  shipping: false,
+  shipping: '',
 }
 
 const dummyUser = {

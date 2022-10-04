@@ -3,6 +3,14 @@ import { displayNames } from "../constants";
 import { INIT_SHIPPING_CARD } from "../initialState";
 
 class Shipping extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shippingData: INIT_SHIPPING_CARD,
+    }
+  }
+
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToCart = () => {
@@ -15,39 +23,42 @@ class Shipping extends React.Component {
     this.toggleDisplay(displayNames.payment)
   }
 
+  handleBlur = ({ target: { name, value } }) => {
+    console.log(name, value);
+  }
+
+  handleChange = ({ target: { name, value } }) => {
+    if (name === 'cellPhoneNumber' || name === 'otherPhoneNumber') {
+      let mask = value.split('-').join('');
+      if (mask.length) {
+        mask = `${mask.substr(0, 3)}-${mask.substr(3, 3)}-${mask.substr(6)}`;
+        this.setState((prevState) => ({
+          shippingData: {
+            ...prevState.shippingData,
+            [name]: mask,
+          },
+        }));
+      } else {
+        this.setState((prevState) => ({
+          shippingData: {
+            ...prevState.shippingData,
+            [name]: ''
+          },
+        }));
+      }
+    } else {
+      this.setState((prevState) => ({
+        shippingData: {
+          ...prevState.shippingData,
+          [name]: value
+        },
+      }));
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-
-    const newShippingInfo = {
-      addressTitle: e.target[0].value,
-      name: e.target[1].value,
-      addressLine1: e.target[2].value,
-      addressLine2: e.target[3].value,
-      city: e.target[4].value,
-      state: e.target[5].value,
-      country: e.target[6].value,
-      zipCode: e.target[7].value,
-      cellPhoneNumber: e.target[8].value,
-      otherPhoneNumber: e.target[9].value,
-      standardShipping: e.target[10].checked,
-      expressShipping: e.target[11].checked,
-    }
-
-    this.props.addShippingInfo(newShippingInfo);
-
-    e.target[0].value = INIT_SHIPPING_CARD.addressTitle;
-    e.target[1].value = INIT_SHIPPING_CARD.name;
-    e.target[2].value = INIT_SHIPPING_CARD.addressLine1;
-    e.target[3].value = INIT_SHIPPING_CARD.addressLine2;
-    e.target[4].value = INIT_SHIPPING_CARD.city;
-    e.target[5].value = INIT_SHIPPING_CARD.state;
-    e.target[6].value = INIT_SHIPPING_CARD.country;
-    e.target[7].value = INIT_SHIPPING_CARD.zipCode;
-    e.target[8].value = INIT_SHIPPING_CARD.cellPhoneNumber;
-    e.target[9].value = INIT_SHIPPING_CARD.otherPhoneNumber;
-    e.target[10].checked = INIT_SHIPPING_CARD.shipping;
-    e.target[11].checked = INIT_SHIPPING_CARD.shipping;
-
+    this.props.addShippingInfo(this.state.shippingData);
     this.goToPayment();
   }
 
@@ -68,11 +79,11 @@ class Shipping extends React.Component {
       { key: 6, id: 'state', label: 'State', name: 'state', type: 'text', error: 'passwordError' },
       { key: 7, id: 'country', label: 'Country', name: 'country', type: 'text', error: 'passwordError' },
       { key: 8, id: 'zipCode', label: 'Zip Code', name: 'zipCode', type: 'number', error: 'passwordError' },
-      { key: 9, id: 'cellPhoneNumber', label: 'Cell Phone Number', name: 'cellPhoneNumber', type: 'tel', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' },
-      { key: 10, id: 'otherPhoneNumber', label: 'Other Phone Number', name: 'otherPhoneNumber', type: 'tel', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' },
+      { key: 9, id: 'cellPhoneNumber', label: 'Cell Phone Number', name: 'cellPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' },
+      { key: 10, id: 'otherPhoneNumber', label: 'Other Phone Number', name: 'otherPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' },
     ]
 
-    const shippingData = [
+    const shippingInputData = [
       { key: 21, id: 'standardShipping', value: 'standard', name: 'shipping', type: 'radio', label: 'Standard Shipping' },
       { key: 22, id: 'expressShipping', value: 'express', name: 'shipping', type: 'radio', label: 'Express Shipping' },
     ]
@@ -83,18 +94,25 @@ class Shipping extends React.Component {
         <div>Shipping</div>
         <form style={tempStyle} onSubmit={this.handleSubmit}>
           {inputData.length ? inputData.map((item) => (
-            <input
+            <label
               key={item.key}
-              id={item.id}
-              autoComplete="off"
-              placeholder={item.label}
-              type={item.type}
-              name={item.name}
-              pattern={item.pattern ? item.pattern : null}
-            />
+              htmlFor={item.id}
+            >
+              <input
+                id={item.id}
+                autoComplete="off"
+                placeholder={item.label}
+                type={item.type}
+                name={item.name}
+                pattern={item.pattern ? item.pattern : null}
+                value={this.state.shippingData && this.state.shippingData[item.name]}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
+              />
+            </label>
           )) : null}
-          <h4>Shipping Method</h4>
-          {shippingData.length ? shippingData.map((item) => (
+          <div>Shipping Method</div>
+          {shippingInputData.length ? shippingInputData.map((item) => (
             <label
               key={item.key}
               htmlFor={item.id}
@@ -105,6 +123,7 @@ class Shipping extends React.Component {
                 value={item.value}
                 type={item.type}
                 name={item.name}
+                onChange={this.handleChange}
               />
               {item.label}
             </label>
