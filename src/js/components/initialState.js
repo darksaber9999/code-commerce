@@ -11,7 +11,7 @@ export const INIT_USER_CARD = {
   passwordConfirm: '',
   firstName: '',
   lastName: '',
-  postalCode: null,
+  postalCode: '',
 }
 
 export const INIT_SHIPPING_CARD = {

@@ -11,6 +11,15 @@ class Shipping extends React.Component {
     }
   }
 
+  applyPhoneNumberMask = (number) => {
+    if (number.length > 6) {
+      return `${number.substr(0, 3)}-${number.substr(3, 3)}-${number.substr(6)}`;
+    } else if (number.length > 3) {
+      return `${number.substr(0, 3)}-${number.substr(3)}`;
+    }
+    return number;
+  }
+
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToCart = () => {
@@ -31,7 +40,7 @@ class Shipping extends React.Component {
     if (name === 'cellPhoneNumber' || name === 'otherPhoneNumber') {
       let mask = value.split('-').join('');
       if (mask.length) {
-        mask = `${mask.substr(0, 3)}-${mask.substr(3, 3)}-${mask.substr(6)}`;
+        mask = this.applyPhoneNumberMask(mask);
         this.setState((prevState) => ({
           shippingData: {
             ...prevState.shippingData,
