@@ -88,8 +88,8 @@ class Shipping extends React.Component {
       { key: 6, id: 'state', label: 'State', name: 'state', type: 'text', error: 'passwordError' },
       { key: 7, id: 'country', label: 'Country', name: 'country', type: 'text', error: 'passwordError' },
       { key: 8, id: 'zipCode', label: 'Zip Code', name: 'zipCode', type: 'number', error: 'passwordError' },
-      { key: 9, id: 'cellPhoneNumber', label: 'Cell Phone Number', name: 'cellPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' },
-      { key: 10, id: 'otherPhoneNumber', label: 'Other Phone Number', name: 'otherPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}' },
+      { key: 9, id: 'cellPhoneNumber', label: 'Cell Phone Number', name: 'cellPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', maxLength: 12 },
+      { key: 10, id: 'otherPhoneNumber', label: 'Other Phone Number', name: 'otherPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', maxLength: 12 },
     ]
 
     const shippingInputData = [
@@ -117,6 +117,7 @@ class Shipping extends React.Component {
                 value={this.state.shippingData && this.state.shippingData[item.name]}
                 onChange={this.handleChange}
                 onBlur={this.handleBlur}
+                maxLength={item.maxLength ? item.maxLength : null}
               />
             </label>
           )) : null}
