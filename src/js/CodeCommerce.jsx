@@ -85,6 +85,12 @@ class CodeCommerce extends React.Component {
           <h1>The Code Corner</h1>
           <p>Your one stop shop for all the lines of code you can handle!</p>
         </div>
+        {this.state.processState.progress.isDisplayed &&
+          <Progress
+            info={this.state}
+            toggleDisplay={this.toggleDisplay}
+          />
+        }
         {this.state.processState.authWindow.isDisplayed &&
           <AuthWindow
             info={this.state}
@@ -117,12 +123,6 @@ class CodeCommerce extends React.Component {
         }
         {this.state.processState.confirm.isDisplayed &&
           <Confirm
-            info={this.state}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.progress.isDisplayed &&
-          <Progress
             info={this.state}
             toggleDisplay={this.toggleDisplay}
           />
