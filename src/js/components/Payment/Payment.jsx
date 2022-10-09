@@ -12,7 +12,7 @@ class Payment extends React.Component {
   render() {
     return (
       <div>
-        <div>Payment</div>
+        <div>Payment Information</div>
         <button onClick={this.goToConfirm}>Pay</button>
       </div>
     )

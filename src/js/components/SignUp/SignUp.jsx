@@ -55,7 +55,6 @@ class SignUp extends React.Component {
 
     return (
       <div>
-        <div>Sign Up</div>
         <form style={tempStyle} onSubmit={this.handleSubmit}>
           {inputData.length ? inputData.map((item) => (
             <input

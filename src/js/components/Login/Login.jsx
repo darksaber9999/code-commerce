@@ -46,7 +46,6 @@ class Login extends React.Component {
 
     return (
       <div>
-        <div>Login</div>
         <form style={tempStyle} onSubmit={this.handleSubmit}>
           {inputData.length ? inputData.map((item) => (
             <input

@@ -19,7 +19,6 @@ class Store extends React.Component {
   render() {
     return (
       <div>
-        <div>Store</div>
         <button onClick={this.goToAuthWindow}>Login/Sign Up</button>
         <button onClick={this.goToCart}>Go to Cart</button>
         <StoreItems

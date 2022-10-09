@@ -12,7 +12,7 @@ class Confirm extends React.Component {
   render() {
     return (
       <div>
-        <div>Confirm</div>
+        <div>Confirmation</div>
         <button onClick={this.goToCart}>Back to Cart</button>
       </div>
     )

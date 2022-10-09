@@ -100,7 +100,7 @@ class Shipping extends React.Component {
 
     return (
       <div>
-        <div>Shipping</div>
+        <div>Shipping Information</div>
         <form style={tempStyle} onSubmit={this.handleSubmit}>
           {inputData.length ? inputData.map((item) => (
             <label

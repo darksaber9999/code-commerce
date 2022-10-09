@@ -25,7 +25,6 @@ class AuthWindow extends React.Component {
   render() {
     return (
       <div>
-        <div>Auth Window</div>
         <button onClick={this.goToStore}>Back to Store</button>
         <div onChange={this.swapAuthOption}>
           <input type="radio" value="login" name="authOption" defaultChecked={this.props.info.processState.login.isDisplayed} />
