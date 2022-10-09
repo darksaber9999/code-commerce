@@ -1,6 +1,7 @@
 import React from "react";
 import { displayNames } from "../constants";
 import Summary from "../Summary/Summary";
+import s from "./Confirm.module.css";
 
 class Confirm extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
@@ -12,7 +13,7 @@ class Confirm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={s.confirmWindow}>
         <div>
           <div>Confirmation</div>
           <button onClick={this.goToCart}>Back to Cart</button>
