@@ -11,12 +11,18 @@ class Payment extends React.Component {
     this.toggleDisplay(displayNames.confirm)
   }
 
+  getGrandTotal = () => {
+    return `$${this.props.getCartTotal() + this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping)}`;
+  }
+
   render() {
+    const grandTotal = this.getGrandTotal();
+
     return (
       <div className={s.paymentWindow}>
         <div>
           <div>Payment Information</div>
-          <button onClick={this.goToConfirm}>Pay</button>
+          <button onClick={this.goToConfirm}>Pay {grandTotal}</button>
         </div>
         <Summary
           info={this.props.info}
