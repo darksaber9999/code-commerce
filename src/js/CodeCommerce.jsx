@@ -1,5 +1,6 @@
 import React from "react";
 import { initState } from "./components/initialState";
+import { storeItemTitles } from "./components/constants";
 import AuthWindow from "./components/AuthWindow/AuthWindow";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Shipping/Shipping";
@@ -58,6 +59,22 @@ class CodeCommerce extends React.Component {
     }
   })
 
+  getSum = (total, num) => total + num;
+
+  getCartTotal = () => {
+    const total = storeItemTitles
+      .map((val) => {
+        if (this.state.loggedInUser.cart.has(val)) {
+          const { price } = this.state.storeItems[val];
+          const quantity = this.state.loggedInUser.cart.get(val);
+          return price * quantity;
+        }
+        return 0;
+      })
+      .reduce(this.getSum, 0);
+    return total;
+  }
+
   addShippingInfo = (info) => this.setState((prevState) => {
     return {
       loggedInUser: {
@@ -105,6 +122,7 @@ class CodeCommerce extends React.Component {
             info={this.state}
             removeFromCart={this.removeFromCart}
             changeQuantity={this.changeQuantity}
+            getCartTotal={this.getCartTotal}
             toggleDisplay={this.toggleDisplay}
           />
         }
@@ -112,18 +130,21 @@ class CodeCommerce extends React.Component {
           <Shipping
             info={this.state}
             addShippingInfo={this.addShippingInfo}
+            getCartTotal={this.getCartTotal}
             toggleDisplay={this.toggleDisplay}
           />
         }
         {this.state.processState.payment.isDisplayed &&
           <Payment
             info={this.state}
+            getCartTotal={this.getCartTotal}
             toggleDisplay={this.toggleDisplay}
           />
         }
         {this.state.processState.confirm.isDisplayed &&
           <Confirm
             info={this.state}
+            getCartTotal={this.getCartTotal}
             toggleDisplay={this.toggleDisplay}
           />
         }

@@ -18,7 +18,10 @@ class Payment extends React.Component {
           <div>Payment Information</div>
           <button onClick={this.goToConfirm}>Pay</button>
         </div>
-        <Summary info={this.props.info} />
+        <Summary
+          info={this.props.info}
+          getCartTotal={this.props.getCartTotal}
+        />
       </div>
     )
   }

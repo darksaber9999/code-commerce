@@ -18,7 +18,10 @@ class Confirm extends React.Component {
           <div>Confirmation</div>
           <button onClick={this.goToCart}>Back to Cart</button>
         </div>
-        <Summary info={this.props.info} />
+        <Summary
+          info={this.props.info}
+          getCartTotal={this.props.getCartTotal}
+        />
       </div>
     )
   }

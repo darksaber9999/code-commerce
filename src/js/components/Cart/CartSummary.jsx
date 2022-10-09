@@ -1,41 +1,14 @@
 import React from "react";
-import { storeItemTitles } from "../constants";
 import s from "./CartSummary.module.css";
 
 class CartSummary extends React.Component {
-
-  getSum = (total, num) => total + num;
-
+  getShipping = (shipping) => shipping === 'express' ? 29.99 : 0.00;
 
   render() {
-    const { info } = this.props;
-    const { loggedInUser, storeItems } = info;
-    const { cart } = loggedInUser;
-
-
-    const getCartTotal = () => {
-      const total = storeItemTitles
-        .map((val) => {
-          if (cart.has(val)) {
-            const { price } = storeItems[val];
-            const quantity = cart.get(val) / 2;
-            return price * quantity;
-          }
-          return 0;
-        })
-        .reduce(this.getSum, 0);
-      return total;
-    }
-
-    const getShipping = (shipping) => {
-      if (shipping === 'express') {
-        return 29.99;
-      }
-      return 0.00;
-    }
-
-    const total = getCartTotal();
-    const shipping = (this.props.shippingInfo) ? getShipping(this.props.shippingInfo.shipping) : getShipping('');
+    const total = this.props.getCartTotal();
+    const shipping = (this.props.shippingInfo) ?
+      this.getShipping(this.props.shippingInfo.shipping) :
+      this.getShipping('');
     const grandTotal = total + shipping;
 
     return (
