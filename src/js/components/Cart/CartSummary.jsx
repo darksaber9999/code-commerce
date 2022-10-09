@@ -27,14 +27,21 @@ class CartSummary extends React.Component {
       return total;
     }
 
+    const getShipping = (shipping) => {
+      if (shipping === 'express') {
+        return 29.99;
+      }
+      return 0.00;
+    }
+
     const total = getCartTotal();
-    const shipping = 0.00;
+    const shipping = (this.props.shippingInfo) ? getShipping(this.props.shippingInfo.shippingData.shipping) : getShipping('');
     const grandTotal = total + shipping;
 
     return (
       <div className={s.cartSummaryWindow}>
         <h5>Cart Subtotal: ${total}</h5>
-        <h5>Shipping: ${shipping.toPrecision(3)}</h5>
+        <h5>Shipping: ${shipping}</h5>
         <h5>Cart Total: ${grandTotal}</h5>
       </div>
     )
