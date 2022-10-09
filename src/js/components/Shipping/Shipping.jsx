@@ -149,7 +149,7 @@ class Shipping extends React.Component {
         </div>
         <Summary
           info={this.props.info}
-          shippingInfo={this.state}
+          shippingInfo={this.state.shippingData}
         />
       </div>
     )

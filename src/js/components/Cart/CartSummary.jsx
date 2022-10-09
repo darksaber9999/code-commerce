@@ -35,7 +35,7 @@ class CartSummary extends React.Component {
     }
 
     const total = getCartTotal();
-    const shipping = (this.props.shippingInfo) ? getShipping(this.props.shippingInfo.shippingData.shipping) : getShipping('');
+    const shipping = (this.props.shippingInfo) ? getShipping(this.props.shippingInfo.shipping) : getShipping('');
     const grandTotal = total + shipping;
 
     return (
