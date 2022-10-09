@@ -1,5 +1,6 @@
 import React from "react";
 import { displayNames } from "../constants";
+import Summary from "../Summary/Summary";
 
 class Payment extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
@@ -12,8 +13,11 @@ class Payment extends React.Component {
   render() {
     return (
       <div>
-        <div>Payment Information</div>
-        <button onClick={this.goToConfirm}>Pay</button>
+        <div>
+          <div>Payment Information</div>
+          <button onClick={this.goToConfirm}>Pay</button>
+        </div>
+        <Summary info={this.props.info} />
       </div>
     )
   }
