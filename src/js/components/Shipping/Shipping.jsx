@@ -1,6 +1,8 @@
 import React from "react";
 import { displayNames } from "../constants";
 import { INIT_SHIPPING_CARD } from "../initialState";
+import Summary from "../Summary/Summary";
+import s from "./Shipping.module.css";
 
 class Shipping extends React.Component {
   constructor(props) {
@@ -99,48 +101,55 @@ class Shipping extends React.Component {
 
 
     return (
-      <div>
-        <div>Shipping Information</div>
-        <form style={tempStyle} onSubmit={this.handleSubmit}>
-          {inputData.length ? inputData.map((item) => (
-            <label
-              key={item.key}
-              htmlFor={item.id}
-            >
-              <input
-                id={item.id}
-                autoComplete="off"
-                placeholder={item.label}
-                type={item.type}
-                name={item.name}
-                pattern={item.pattern ? item.pattern : null}
-                value={this.state.shippingData && this.state.shippingData[item.name]}
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-                maxLength={item.maxLength ? item.maxLength : null}
-              />
-            </label>
-          )) : null}
-          <div>Shipping Method</div>
-          {shippingInputData.length ? shippingInputData.map((item) => (
-            <label
-              key={item.key}
-              htmlFor={item.id}
-            >
-              <input
-                id={item.id}
-                autoComplete="off"
-                value={item.value}
-                type={item.type}
-                name={item.name}
-                onChange={this.handleChange}
-              />
-              {item.label}
-            </label>
-          )) : null}
-          <button onClick={this.goToCart}>Back to Cart</button>
-          <input type="submit" value="Payment" />
-        </form>
+      <div className={s.shippingWindow}>
+        <div>
+          <div>Shipping Information</div>
+          <form style={tempStyle} onSubmit={this.handleSubmit}>
+            {inputData.length ? inputData.map((item) => (
+              <label
+                key={item.key}
+                htmlFor={item.id}
+              >
+                <input
+                  id={item.id}
+                  autoComplete="off"
+                  placeholder={item.label}
+                  type={item.type}
+                  name={item.name}
+                  pattern={item.pattern ? item.pattern : null}
+                  value={this.state.shippingData && this.state.shippingData[item.name]}
+                  onChange={this.handleChange}
+                  onBlur={this.handleBlur}
+                  maxLength={item.maxLength ? item.maxLength : null}
+                />
+              </label>
+            )) : null}
+            <div>Shipping Method</div>
+            {shippingInputData.length ? shippingInputData.map((item) => (
+              <label
+                key={item.key}
+                htmlFor={item.id}
+              >
+                <input
+                  id={item.id}
+                  autoComplete="off"
+                  value={item.value}
+                  type={item.type}
+                  name={item.name}
+                  onChange={this.handleChange}
+                />
+                {item.label}
+              </label>
+            )) : null}
+            <div>
+              <button onClick={this.goToCart}>Back to Cart</button>
+              <input type="submit" value="Payment" />
+            </div>
+          </form>
+        </div>
+        <Summary
+          info={this.props.info}
+        />
       </div>
     )
   }

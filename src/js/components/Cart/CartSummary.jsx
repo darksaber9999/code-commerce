@@ -33,14 +33,9 @@ class CartSummary extends React.Component {
 
     return (
       <div className={s.cartSummaryWindow}>
-        <h3>Cart Summary</h3>
         <h5>Cart Subtotal: ${total}</h5>
         <h5>Shipping: ${shipping.toPrecision(3)}</h5>
         <h5>Cart Total: ${grandTotal}</h5>
-        <div>
-          <button onClick={this.props.goToStore}>Back to Store</button>
-          <button onClick={this.props.goToShipping}>Checkout</button>
-        </div>
       </div>
     )
   }

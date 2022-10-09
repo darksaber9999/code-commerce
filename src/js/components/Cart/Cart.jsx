@@ -2,8 +2,8 @@ import React from "react";
 import { displayNames } from "../constants";
 import { isEmpty } from "../validations";
 import CartItems from "./CartItems";
-import CartSummary from "./CartSummary";
 import s from "./Cart.module.css";
+import Summary from "../Summary/Summary";
 
 class Cart extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
@@ -47,7 +47,7 @@ class Cart extends React.Component {
               removeFromCart={this.props.removeFromCart}
               changeQuantity={this.props.changeQuantity}
             />
-            <CartSummary
+            <Summary
               info={this.props.info}
               goToShipping={this.goToShipping}
               goToStore={this.goToStore}
