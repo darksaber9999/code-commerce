@@ -66,7 +66,11 @@ class CodeCommerce extends React.Component {
       .map((val) => {
         if (this.state.loggedInUser.cart.has(val)) {
           const { price } = this.state.storeItems[val];
-          const quantity = this.state.loggedInUser.cart.get(val);
+          const quantity = this.state.loggedInUser.cart.get(val) / 2;
+
+          // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
+          console.log('Quantity Error -- Work Around Implemented');
+
           return price * quantity;
         }
         return 0;
@@ -74,6 +78,8 @@ class CodeCommerce extends React.Component {
       .reduce(this.getSum, 0);
     return total;
   }
+
+  getShipping = (shipping) => shipping === 'express' ? 29.99 : 0.00;
 
   addShippingInfo = (info) => this.setState((prevState) => {
     return {
@@ -123,6 +129,7 @@ class CodeCommerce extends React.Component {
             removeFromCart={this.removeFromCart}
             changeQuantity={this.changeQuantity}
             getCartTotal={this.getCartTotal}
+            getShipping={this.getShipping}
             toggleDisplay={this.toggleDisplay}
           />
         }
@@ -131,6 +138,7 @@ class CodeCommerce extends React.Component {
             info={this.state}
             addShippingInfo={this.addShippingInfo}
             getCartTotal={this.getCartTotal}
+            getShipping={this.getShipping}
             toggleDisplay={this.toggleDisplay}
           />
         }
@@ -138,6 +146,7 @@ class CodeCommerce extends React.Component {
           <Payment
             info={this.state}
             getCartTotal={this.getCartTotal}
+            getShipping={this.getShipping}
             toggleDisplay={this.toggleDisplay}
           />
         }
@@ -145,6 +154,7 @@ class CodeCommerce extends React.Component {
           <Confirm
             info={this.state}
             getCartTotal={this.getCartTotal}
+            getShipping={this.getShipping}
             toggleDisplay={this.toggleDisplay}
           />
         }

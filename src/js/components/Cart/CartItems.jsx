@@ -22,7 +22,7 @@ class CartItems extends React.Component {
             const quantity = cart.get(val) / 2;
 
             // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
-            console.log(val);
+            console.log('Quantity Error -- Work Around Implemented');
 
             return (
               <div key={key} className={s.cartItem}>

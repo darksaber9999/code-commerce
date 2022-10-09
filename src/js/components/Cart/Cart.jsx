@@ -52,6 +52,7 @@ class Cart extends React.Component {
               goToShipping={this.goToShipping}
               goToStore={this.goToStore}
               getCartTotal={this.props.getCartTotal}
+              getShipping={this.props.getShipping}
             />
           </div>
         }

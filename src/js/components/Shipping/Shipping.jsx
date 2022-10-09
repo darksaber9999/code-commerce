@@ -151,6 +151,7 @@ class Shipping extends React.Component {
           info={this.props.info}
           shippingInfo={this.state.shippingData}
           getCartTotal={this.props.getCartTotal}
+          getShipping={this.props.getShipping}
         />
       </div>
     )

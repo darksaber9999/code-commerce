@@ -21,6 +21,7 @@ class Confirm extends React.Component {
         <Summary
           info={this.props.info}
           getCartTotal={this.props.getCartTotal}
+          getShipping={this.props.getShipping}
         />
       </div>
     )

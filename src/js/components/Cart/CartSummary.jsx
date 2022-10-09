@@ -2,13 +2,11 @@ import React from "react";
 import s from "./CartSummary.module.css";
 
 class CartSummary extends React.Component {
-  getShipping = (shipping) => shipping === 'express' ? 29.99 : 0.00;
-
   render() {
     const total = this.props.getCartTotal();
     const shipping = (this.props.shippingInfo) ?
-      this.getShipping(this.props.shippingInfo.shipping) :
-      this.getShipping('');
+      this.props.getShipping(this.props.shippingInfo.shipping) :
+      this.props.getShipping('');
     const grandTotal = total + shipping;
 
     return (

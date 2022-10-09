@@ -19,6 +19,7 @@ class Summary extends React.Component {
                 null
           }
           getCartTotal={this.props.getCartTotal}
+          getShipping={this.props.getShipping}
         />
         <div className={this.props.info.processState.cart.isDisplayed ? '' : s.hideButtons}>
           <button onClick={this.props.goToStore}>Back to Store</button>
