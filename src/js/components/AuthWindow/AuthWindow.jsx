@@ -7,18 +7,19 @@ class AuthWindow extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToCart = () => {
-    this.toggleDisplay(displayNames.authWindow)
-    this.toggleDisplay(displayNames.cart)
+    this.toggleDisplay(displayNames.authWindow);
+    this.toggleDisplay(displayNames.progress);
+    this.toggleDisplay(displayNames.cart);
   }
 
   goToStore = () => {
-    this.toggleDisplay(displayNames.authWindow)
-    this.toggleDisplay(displayNames.store)
+    this.toggleDisplay(displayNames.authWindow);
+    this.toggleDisplay(displayNames.store);
   }
 
   swapAuthOption = () => {
-    this.toggleDisplay(displayNames.signUp)
-    this.toggleDisplay(displayNames.login)
+    this.toggleDisplay(displayNames.signUp);
+    this.toggleDisplay(displayNames.login);
   }
 
   render() {

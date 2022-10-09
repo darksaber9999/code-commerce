@@ -9,6 +9,7 @@ class Cart extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToAuthWindow = () => {
+    this.toggleDisplay(displayNames.progress);
     this.toggleDisplay(displayNames.cart);
     this.toggleDisplay(displayNames.authWindow);
   }
@@ -19,6 +20,7 @@ class Cart extends React.Component {
   }
 
   goToStore = () => {
+    this.toggleDisplay(displayNames.progress);
     this.toggleDisplay(displayNames.cart);
     this.toggleDisplay(displayNames.store);
   }

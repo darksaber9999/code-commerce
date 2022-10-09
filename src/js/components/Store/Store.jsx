@@ -6,13 +6,14 @@ class Store extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToAuthWindow = () => {
-    this.toggleDisplay(displayNames.store)
-    this.toggleDisplay(displayNames.authWindow)
+    this.toggleDisplay(displayNames.store);
+    this.toggleDisplay(displayNames.authWindow);
   }
 
   goToCart = () => {
-    this.toggleDisplay(displayNames.store)
-    this.toggleDisplay(displayNames.cart)
+    this.toggleDisplay(displayNames.store);
+    this.toggleDisplay(displayNames.progress);
+    this.toggleDisplay(displayNames.cart);
   }
 
   render() {
