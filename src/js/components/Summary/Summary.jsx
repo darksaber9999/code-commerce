@@ -7,7 +7,7 @@ class Summary extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className={s.summaryWindow}>
         <h3>Summary</h3>
         <CartSummary
           info={this.props.info}
