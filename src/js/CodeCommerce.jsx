@@ -112,7 +112,7 @@ class CodeCommerce extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <div className="store-header">
           <h1>The Code Corner</h1>
           <p>Your one stop shop for all the lines of code you can handle!</p>

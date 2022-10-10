@@ -107,7 +107,7 @@ class Payment extends React.Component {
                 />
               </label>
             )) : null}
-            <div>
+            <div className="btn">
               <button onClick={this.goToCart}>Back to Cart</button>
               <input type="submit" value={`Pay ${grandTotal}`} />
             </div>
