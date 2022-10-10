@@ -8,6 +8,7 @@ class Confirm extends React.Component {
 
   goToStore = () => {
     this.toggleDisplay(displayNames.confirm)
+    this.toggleDisplay(displayNames.progress)
     this.toggleDisplay(displayNames.store)
   }
 
