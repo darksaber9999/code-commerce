@@ -83,6 +83,14 @@ class Payment extends React.Component {
       { key: 3, id: 'securityCode', label: 'Security Code/CVV', name: 'securityCode', type: 'text', error: 'passwordError', maxLength: 4 },
     ]
 
+    const option1 = ['Month', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    const option2 = ['Year', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2010'];
+
+    const selectData = [
+      { key: 21, id: 'expiryMonth', name: 'expiryMonth', option: option1 },
+      { key: 22, id: 'expiryYear', name: 'expiryYear', option: option2 },
+    ]
+
 
     return (
       <div className={s.paymentWindow}>
@@ -107,6 +115,27 @@ class Payment extends React.Component {
                 />
               </label>
             )) : null}
+            <div>
+              {selectData.length ? selectData.map((item) => (
+                <label
+                  key={item.key}
+                  htmlFor={item.id}
+                >
+                  <select
+                    id={item.id}
+                    autoComplete="off"
+                    name={item.name}
+                    value={this.state.paymentData && this.state.paymentData[item.name]}
+                    onChange={this.handleChange}
+                    onBlur={this.handleBlur}
+                  >
+                    {item.option.map((num) => (
+                      <option key={num} value={num}>{num}</option>
+                    ))}
+                  </select>
+                </label>
+              )) : null}
+            </div>
             <div className="btn">
               <button onClick={this.goToCart}>Back to Cart</button>
               <input type="submit" value={`Pay ${grandTotal}`} />
