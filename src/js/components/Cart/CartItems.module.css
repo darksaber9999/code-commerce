@@ -19,6 +19,7 @@
 
 .imageWrapper {
   max-width: 400px;
+  margin: 0 10px;
 }
 
 .imageWrapper img {
@@ -29,9 +30,24 @@
   font-size: initial;
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
   width: 100%;
   align-items: center;
+}
+
+.nameWrapper,
+.btnWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.nameWrapper h3,
+.nameWrapper p {
+  margin: 0;
+}
+
+.nameWrapper span,
+.btnWrapper h4 {
+  margin: 0 10px
 }
 
 @media (max-width: 600px) {

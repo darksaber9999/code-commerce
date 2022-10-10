@@ -26,16 +26,22 @@ class CartItems extends React.Component {
 
             return (
               <div key={key} className={s.cartItem}>
-                <button id={val} onClick={this.handleRemoveItem}>X</button>
+                <div>
+                  <button id={val} onClick={this.handleRemoveItem}>X</button>
+                </div>
                 <div className={s.imageWrapper}>
                   <img src={image} alt="computer code on a screen" />
                 </div>
                 <div className={s.infoWrapper}>
-                  <h3>{title}</h3>
-                  <p>{amountOfWork}</p>
+                  <div className={s.nameWrapper}>
+                    <h3>{title}</h3>
+                    <span> -- </span>
+                    <p>{amountOfWork}</p>
+                  </div>
                   <h4>{price}</h4>
-                  <h4>Quantity: </h4>
-                  <span>
+                  <span className={s.btnWrapper}>
+                    <h4>Quantity: </h4>
+
                     <button id="subtract" className={val} onClick={this.changeQuantity}>-</button>
                     <h4>{quantity}</h4>
                     <button id="add" className={val} onClick={this.changeQuantity}>+</button>
