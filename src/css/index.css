@@ -40,6 +40,7 @@ input[type=submit] {
   box-shadow: 0 32px 54px rgb(0, 0, 0, 0.15);
   background-color: #ece0c8;
   border-color: #ece0c8;
+  border-radius: 8px;
 }
 
 .btn {
