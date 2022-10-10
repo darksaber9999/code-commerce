@@ -90,6 +90,15 @@ class CodeCommerce extends React.Component {
     }
   })
 
+  addPaymentInfo = (info) => this.setState((prevState) => {
+    return {
+      loggedInUser: {
+        ...prevState['loggedInUser'],
+        paymentInfo: info,
+      }
+    }
+  })
+
   toggleDisplay = (name) => this.setState((prevState) => {
     return {
       processState: {
@@ -145,6 +154,7 @@ class CodeCommerce extends React.Component {
         {this.state.processState.payment.isDisplayed &&
           <Payment
             info={this.state}
+            addPaymentInfo={this.addPaymentInfo}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}
             toggleDisplay={this.toggleDisplay}

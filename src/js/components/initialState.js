@@ -28,6 +28,14 @@ export const INIT_SHIPPING_CARD = {
   shipping: '',
 }
 
+export const INIT_PAYMENT_CARD = {
+  cardholderName: '',
+  cardNumber: '',
+  securityCode: '',
+  expiryMonth: '',
+  expiryYear: '',
+}
+
 const dummyUser = {
   emailAddress: 'test@email.com',
   password: 'test',
