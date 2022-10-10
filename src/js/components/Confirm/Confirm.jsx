@@ -18,7 +18,7 @@ class Confirm extends React.Component {
         <div>
           <div>Confirmation</div>
           <div className="btn">
-            <button onClick={console.log('click')}>Track Order</button>
+            <button>Track Order</button>
             <button onClick={this.goToStore}>Back to Store</button>
           </div>
         </div>
