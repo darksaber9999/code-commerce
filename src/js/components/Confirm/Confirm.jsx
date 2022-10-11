@@ -4,14 +4,22 @@ import Summary from "../Summary/Summary";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import s from "./Confirm.module.css";
+import { INIT_PAYMENT_CARD, INIT_SHIPPING_CARD } from "../initialState";
 
 class Confirm extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
+  closeOrder = () => {
+    this.props.clearCart();
+    this.props.addShippingInfo(INIT_SHIPPING_CARD);
+    this.props.addPaymentInfo(INIT_PAYMENT_CARD);
+  }
+
   goToStore = () => {
-    this.toggleDisplay(displayNames.confirm)
-    this.toggleDisplay(displayNames.progress)
-    this.toggleDisplay(displayNames.store)
+    this.closeOrder();
+    this.toggleDisplay(displayNames.confirm);
+    this.toggleDisplay(displayNames.progress);
+    this.toggleDisplay(displayNames.store);
   }
 
   render() {

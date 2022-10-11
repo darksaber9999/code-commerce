@@ -59,6 +59,15 @@ class CodeCommerce extends React.Component {
     }
   })
 
+  clearCart = () => this.setState((prevState) => {
+    return {
+      loggedInUser: {
+        ...prevState['loggedInUser'],
+        cart: new Map(),
+      }
+    }
+  })
+
   getSum = (total, num) => total + num;
 
   getCartTotal = () => {
@@ -163,6 +172,9 @@ class CodeCommerce extends React.Component {
         {this.state.processState.confirm.isDisplayed &&
           <Confirm
             info={this.state}
+            clearCart={this.clearCart}
+            addShippingInfo={this.addShippingInfo}
+            addPaymentInfo={this.addPaymentInfo}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}
             toggleDisplay={this.toggleDisplay}
