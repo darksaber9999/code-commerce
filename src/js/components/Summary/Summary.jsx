@@ -1,5 +1,6 @@
 import React from "react";
 import CartSummary from "../Cart/CartSummary";
+import PaymentSummary from "../Payment/PaymentSummary";
 import ShippingSummary from "../Shipping/ShippingSummary";
 import s from "./Summary.module.css";
 
@@ -30,6 +31,13 @@ class Summary extends React.Component {
           this.props.info.processState.confirm.isDisplayed) &&
           <ShippingSummary
             info={this.props.info}
+          />
+        }
+        {this.props.info.processState.confirm.isDisplayed &&
+          <PaymentSummary
+            info={this.props.info}
+            getCartTotal={this.props.getCartTotal}
+            getShipping={this.props.getShipping}
           />
         }
       </div>
