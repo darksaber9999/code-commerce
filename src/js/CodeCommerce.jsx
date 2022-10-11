@@ -19,6 +19,11 @@ class CodeCommerce extends React.Component {
 
   setLoggedInUser = (user) => this.setState((prevState) => ({ loggedInUser: user }))
 
+  logoutUser = () => {
+    this.toggleIsLoggedIn();
+    this.setLoggedInUser({});
+  }
+
   addUser = (newUser) => this.setState((prevState) => ({ currentUsers: prevState['currentUsers'].concat([newUser]) }))
 
   addToCart = (item) => this.setState((prevState) => {
@@ -137,6 +142,7 @@ class CodeCommerce extends React.Component {
             info={this.state}
             toggleIsLoggedIn={this.toggleIsLoggedIn}
             setLoggedInUser={this.setLoggedInUser}
+            logoutUser={this.logoutUser}
             addUser={this.addUser}
             toggleDisplay={this.toggleDisplay}
           />
