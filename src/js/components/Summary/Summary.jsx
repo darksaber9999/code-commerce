@@ -1,5 +1,6 @@
 import React from "react";
 import CartSummary from "../Cart/CartSummary";
+import ShippingSummary from "../Shipping/ShippingSummary";
 import s from "./Summary.module.css";
 
 class Summary extends React.Component {
@@ -25,6 +26,12 @@ class Summary extends React.Component {
           <button onClick={this.props.goToStore}>Back to Store</button>
           <button onClick={this.props.goToShipping}>Checkout</button>
         </div>
+        {(this.props.info.processState.payment.isDisplayed ||
+          this.props.info.processState.confirm.isDisplayed) &&
+          <ShippingSummary
+            info={this.props.info}
+          />
+        }
       </div>
     )
   }

@@ -113,6 +113,11 @@ const storeItems = {
   },
 }
 
+const shippingMethods = {
+  standard: 'Delivery in 4 to 6 Business Days - Free',
+  express: 'Delivery overnight -- $29.99',
+}
+
 export const initState = {
   isLoggedIn: false,
   loggedInUser: {},
@@ -121,4 +126,5 @@ export const initState = {
   ],
   processState,
   storeItems,
+  shippingMethods,
 }
