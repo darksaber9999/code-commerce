@@ -71,12 +71,6 @@ class Payment extends React.Component {
   render() {
     const grandTotal = this.getGrandTotal();
 
-    const tempStyle = {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    }
-
     const inputData = [
       { key: 1, id: 'cardholderName', label: 'Cardholder Name', name: 'cardholderName', type: 'text', error: 'emailError' },
       { key: 2, id: 'cardNumber', label: 'Card Number', name: 'cardNumber', type: 'text', error: 'passwordError', maxLength: 19 },
@@ -96,7 +90,7 @@ class Payment extends React.Component {
       <div className={s.paymentWindow}>
         <div>
           <div>Payment Information</div>
-          <form style={tempStyle} onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             {inputData.length ? inputData.map((item) => (
               <label
                 key={item.key}

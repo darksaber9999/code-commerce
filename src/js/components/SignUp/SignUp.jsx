@@ -29,13 +29,6 @@ class SignUp extends React.Component {
   }
 
   render() {
-
-    const tempStyle = {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    }
-
     const inputData = [
       { key: 1, id: 'emailAddress', label: 'Email Address', name: 'email', type: 'text', error: 'emailError' },
       { key: 2, id: 'password', label: 'Password', name: 'password', type: 'password', error: 'passwordError' },
@@ -55,7 +48,7 @@ class SignUp extends React.Component {
 
     return (
       <div>
-        <form style={tempStyle} onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           {inputData.length ? inputData.map((item) => (
             <input
               key={item.key}

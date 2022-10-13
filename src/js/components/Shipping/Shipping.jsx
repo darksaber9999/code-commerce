@@ -74,13 +74,6 @@ class Shipping extends React.Component {
   }
 
   render() {
-
-    const tempStyle = {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    }
-
     const inputData = [
       { key: 1, id: 'addressTitle', label: 'Address Title', name: 'addressTitle', type: 'text', error: 'emailError' },
       { key: 2, id: 'name', label: 'Name', name: 'name', type: 'text', error: 'passwordError' },
@@ -104,7 +97,7 @@ class Shipping extends React.Component {
       <div className={s.shippingWindow}>
         <div>
           <div>Shipping Information</div>
-          <form style={tempStyle} onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             {inputData.length ? inputData.map((item) => (
               <label
                 key={item.key}
