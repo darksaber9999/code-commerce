@@ -1,7 +1,8 @@
 import React from "react";
-import { displayNames } from "../constants";
+import { CARD, CARDICON, displayNames, OTHERCARDS } from "../constants";
 import { INIT_PAYMENT_CARD } from "../initialState";
 import Summary from "../Summary/Summary";
+import { cardNumberValidation, onlyTextValidation, securityCodeValidation } from "../validations";
 import s from "./Payment.module.css";
 
 class Payment extends React.Component {
@@ -10,6 +11,8 @@ class Payment extends React.Component {
 
     this.state = {
       paymentData: INIT_PAYMENT_CARD,
+      error: {},
+      cardType: '',
     }
   }
 
@@ -29,9 +32,67 @@ class Payment extends React.Component {
     return `$${this.props.getCartTotal() + this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping)}`;
   }
 
-  handleBlur = ({ target: { name, value } }) => {
-    console.log(name, value);
+  findDebitCardType = (cardNumber) => {
+    const regexPattern = {
+      MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
+      VISA: /^4[0-9]{2,}$/,
+      AMERICAN_EXPRESS: /^3[47][0-9]{5,}$/,
+      DISCOVER: /^6(?:011|5[0-9]{2})[0-9]{3,}$/,
+    };
+    for (const card in regexPattern) {
+      if (cardNumber.replace(/[^\d]/g, '').match(regexPattern[card])) return card;
+    }
+    return '';
   }
+
+  handleValidations = (type, value) => {
+    let errorText;
+    switch (type) {
+      case 'cardNumber':
+        errorText = cardNumberValidation(value);
+        this.setState((prevState) => ({
+          cardType: this.findDebitCardType(value),
+          error: {
+            ...prevState.error,
+            cardNumberError: errorText,
+          },
+        }));
+        break;
+      case 'cardholderName':
+        errorText = onlyTextValidation(value);
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            cardholderNameError: errorText,
+          },
+        }));
+        break;
+      case 'securityCode':
+        errorText = securityCodeValidation(3, value);
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            securityCodeError: errorText,
+          },
+        }));
+        break;
+      case 'expiryMonth':
+      case 'expiryYear':
+        errorText = undefined;
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            expiryMonthError: errorText,
+            expiryYearError: errorText,
+          },
+        }));
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleBlur = ({ target: { name, value } }) => this.handleValidations(name, value);
 
   handleChange = ({ target: { name, value } }) => {
     if (name === 'cardNumber') {
@@ -62,29 +123,55 @@ class Payment extends React.Component {
     }
   }
 
+  checkErrorBeforeSave = () => {
+    const { paymentData } = this.state;
+    let errorValue = {};
+    let isError = false;
+    Object.keys(paymentData).forEach((val) => {
+      if (!paymentData[val].length) {
+        errorValue = { ...errorValue, [`${val}Error`]: 'Required' };
+        isError = true;
+      }
+    });
+    this.setState((prevState) => ({
+      error: {
+        ...prevState.error,
+        ...errorValue,
+      }
+    }));
+    return isError;
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addPaymentInfo(this.state.paymentData);
-    this.goToConfirm();
+    const errorCheck = this.checkErrorBeforeSave();
+
+    if (!errorCheck && !Object.values(this.state.error).filter((val) => val !== undefined).length) {
+      this.props.addPaymentInfo(this.state.paymentData);
+      this.setState({
+        paymentData: INIT_PAYMENT_CARD,
+      });
+      this.goToConfirm();
+    }
   }
 
   render() {
+    const { error } = this.state;
     const grandTotal = this.getGrandTotal();
 
     const inputData = [
-      { key: 1, id: 'cardholderName', label: 'Cardholder Name', name: 'cardholderName', type: 'text', error: 'emailError' },
-      { key: 2, id: 'cardNumber', label: 'Card Number', name: 'cardNumber', type: 'text', error: 'passwordError', maxLength: 19 },
-      { key: 3, id: 'securityCode', label: 'Security Code/CVV', name: 'securityCode', type: 'text', error: 'passwordError', maxLength: 4 },
-    ]
+      { key: 1, id: 'cardholderName', label: 'Cardholder Name', name: 'cardholderName', type: 'text', error: 'cardholderNameError' },
+      { key: 2, id: 'cardNumber', label: 'Card Number', name: 'cardNumber', type: 'text', error: 'cardNumberError', maxLength: OTHERCARDS.length, isCard: true },
+      { key: 3, id: 'securityCode', label: 'Security Code/CVV', name: 'securityCode', type: 'text', error: 'securityCodeError', maxLength: 4 },
+    ];
 
     const option1 = ['Month', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
     const option2 = ['Year', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2010'];
 
     const selectData = [
-      { key: 21, id: 'expiryMonth', name: 'expiryMonth', option: option1 },
-      { key: 22, id: 'expiryYear', name: 'expiryYear', option: option2 },
-    ]
-
+      { key: 21, id: 'expiryMonth', name: 'expiryMonth', option: option1, error: 'expiryMonthError' },
+      { key: 22, id: 'expiryYear', name: 'expiryYear', option: option2, error: 'expiryYearError' },
+    ];
 
     return (
       <div className={s.paymentWindow}>
@@ -107,6 +194,20 @@ class Payment extends React.Component {
                   onBlur={this.handleBlur}
                   maxLength={item.maxLength ? item.maxLength : null}
                 />
+                <div>
+                  {(error
+                    && error[item.error]
+                    && error[item.error].length > 1)
+                    ? error[item.error]
+                    : null}
+                </div>
+                {item.isCard && CARD.includes(this.state.cardType) &&
+                  <img
+                    className={s.cardImage}
+                    src={CARDICON[this.state.cardType]}
+                    alt="card"
+                  />
+                }
               </label>
             )) : null}
             <div>
@@ -127,6 +228,13 @@ class Payment extends React.Component {
                       <option key={num} value={num}>{num}</option>
                     ))}
                   </select>
+                  <span>
+                    {(error
+                      && error[item.error]
+                      && error[item.error].length > 1)
+                      ? error[item.error]
+                      : null}
+                  </span>
                 </label>
               )) : null}
             </div>
