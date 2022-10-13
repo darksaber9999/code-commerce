@@ -20,6 +20,11 @@ class Login extends React.Component {
         this.signInSuccess(user);
         return true;
       }
+      if (user.emailAddress === e.target[0].value && user.password !== e.target[1].value) {
+        // Add incorrect password error
+        console.log('Incorrect Password');
+        return false;
+      }
       return false;
     });
   }
