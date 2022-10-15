@@ -22,14 +22,6 @@ class Login extends React.Component {
     let errorText;
     switch (type) {
       case 'emailAddress':
-        errorText = undefined;
-        this.setState((prevState) => ({
-          error: {
-            ...prevState.error,
-            [`${type}Error`]: errorText,
-          },
-        }));
-        break;
       case 'password':
         errorText = undefined;
         this.setState((prevState) => ({
@@ -137,6 +129,7 @@ class Login extends React.Component {
             </label>
           )) : null}
           <FontAwesomeIcon icon={faEye} onClick={passwordMask} />
+          <button>Login with Facebook</button>
           <input type="submit" />
         </form>
       </div>
