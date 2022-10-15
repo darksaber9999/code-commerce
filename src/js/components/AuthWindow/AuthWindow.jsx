@@ -28,10 +28,14 @@ class AuthWindow extends React.Component {
       <div>
         <button onClick={this.goToStore}>Back to Store</button>
         <div className={this.props.info.isLoggedIn ? s.authWindowSwapperHidden : ''} onChange={this.swapAuthOption}>
-          <input type="radio" value="login" name="authOption" defaultChecked={this.props.info.processState.login.isDisplayed} />
-          <span>Login</span>
-          <input type="radio" value="signUp" name="authOption" defaultChecked={this.props.info.processState.signUp.isDisplayed} />
-          <span>Sign Up</span>
+          <label htmlFor="login">
+            <input type="radio" value="login" id="login" name="authOption" defaultChecked={this.props.info.processState.login.isDisplayed} />
+            <span>Login</span>
+          </label>
+          <label htmlFor="signUp">
+            <input type="radio" value="signUp" id="signUp" name="authOption" defaultChecked={this.props.info.processState.signUp.isDisplayed} />
+            <span>Sign Up</span>
+          </label>
         </div>
         {(this.props.info.processState.signUp.isDisplayed &&
           !this.props.info.isLoggedIn) &&
