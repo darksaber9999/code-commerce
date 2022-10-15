@@ -2,6 +2,7 @@ import React from "react";
 import { displayNames } from "../constants";
 import { INIT_SHIPPING_CARD } from "../initialState";
 import Summary from "../Summary/Summary";
+import { onlyNumbersValidation } from "../validations";
 import s from "./Shipping.module.css";
 
 class Shipping extends React.Component {
@@ -10,6 +11,7 @@ class Shipping extends React.Component {
 
     this.state = {
       shippingData: INIT_SHIPPING_CARD,
+      error: {},
     }
   }
 
@@ -34,9 +36,41 @@ class Shipping extends React.Component {
     this.toggleDisplay(displayNames.payment)
   }
 
-  handleBlur = ({ target: { name, value } }) => {
-    console.log(name, value);
+  handleValidations = (type, value) => {
+    let errorText;
+    switch (type) {
+      case 'addressTitle':
+      case 'name':
+      case 'addressLine1':
+      case 'addressLine2':
+      case 'city':
+      case 'state':
+      case 'country':
+        errorText = undefined;
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            [`${type}Error`]: errorText,
+          },
+        }));
+        break;
+      case 'zipCode':
+      case 'cellPhoneNumber':
+      case 'otherPhoneNumber':
+        errorText = onlyNumbersValidation(value.split('-').join(''));
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            [`${type}Error`]: errorText,
+          },
+        }));
+        break;
+      default:
+        break;
+    }
   }
+
+  handleBlur = ({ target: { name, value } }) => this.handleValidations(name, value);
 
   handleChange = ({ target: { name, value } }) => {
     if (name === 'cellPhoneNumber' || name === 'otherPhoneNumber') {
@@ -67,24 +101,52 @@ class Shipping extends React.Component {
     }
   }
 
+  checkErrorBeforeSave = () => {
+    const { shippingData } = this.state;
+    let errorValue = {};
+    let isError = false;
+    Object.keys(shippingData).forEach((val) => {
+      if (!shippingData[val].length && val !== 'shipping') {
+        errorValue = { ...errorValue, [`${val}Error`]: 'Required' };
+        isError = true;
+      }
+    });
+    this.setState((prevState) => ({
+      error: {
+        ...prevState.error,
+        ...errorValue,
+      }
+    }));
+    return isError;
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addShippingInfo(this.state.shippingData);
-    this.goToPayment();
+    const errorCheck = this.checkErrorBeforeSave();
+
+    if (!errorCheck && !Object.values(this.state.error).filter((val) => val !== undefined).length) {
+      this.props.addShippingInfo(this.state.shippingData);
+      this.setState({
+        shippingData: INIT_SHIPPING_CARD,
+      });
+      this.goToPayment();
+    }
   }
 
   render() {
+    const { error } = this.state;
+
     const inputData = [
-      { key: 1, id: 'addressTitle', label: 'Address Title', name: 'addressTitle', type: 'text', error: 'emailError' },
-      { key: 2, id: 'name', label: 'Name', name: 'name', type: 'text', error: 'passwordError' },
-      { key: 3, id: 'addressLine1', label: 'Address Line 1', name: 'addressLine1', type: 'text', error: 'passwordError' },
-      { key: 4, id: 'addressLine2', label: 'Address Line 2', name: 'addressLine2', type: 'text', error: 'passwordError' },
-      { key: 5, id: 'city', label: 'City', name: 'city', type: 'text', error: 'passwordError' },
-      { key: 6, id: 'state', label: 'State', name: 'state', type: 'text', error: 'passwordError' },
-      { key: 7, id: 'country', label: 'Country', name: 'country', type: 'text', error: 'passwordError' },
-      { key: 8, id: 'zipCode', label: 'Zip Code', name: 'zipCode', type: 'number', error: 'passwordError' },
-      { key: 9, id: 'cellPhoneNumber', label: 'Cell Phone Number', name: 'cellPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', maxLength: 12 },
-      { key: 10, id: 'otherPhoneNumber', label: 'Other Phone Number', name: 'otherPhoneNumber', type: 'text', error: 'passwordError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', maxLength: 12 },
+      { key: 1, id: 'addressTitle', label: 'Address Title', name: 'addressTitle', type: 'text', error: 'addressTitleError' },
+      { key: 2, id: 'name', label: 'Name', name: 'name', type: 'text', error: 'nameError' },
+      { key: 3, id: 'addressLine1', label: 'Address Line 1', name: 'addressLine1', type: 'text', error: 'addressLine1Error' },
+      { key: 4, id: 'addressLine2', label: 'Address Line 2', name: 'addressLine2', type: 'text', error: 'addressLine2Error' },
+      { key: 5, id: 'city', label: 'City', name: 'city', type: 'text', error: 'cityError' },
+      { key: 6, id: 'state', label: 'State', name: 'state', type: 'text', error: 'stateError' },
+      { key: 7, id: 'country', label: 'Country', name: 'country', type: 'text', error: 'countryError' },
+      { key: 8, id: 'zipCode', label: 'Zip Code', name: 'zipCode', type: 'text', error: 'zipCodeError', maxLength: 5 },
+      { key: 9, id: 'cellPhoneNumber', label: 'Cell Phone Number', name: 'cellPhoneNumber', type: 'text', error: 'cellPhoneNumberError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', maxLength: 12 },
+      { key: 10, id: 'otherPhoneNumber', label: 'Other Phone Number', name: 'otherPhoneNumber', type: 'text', error: 'otherPhoneNumberError', pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}', maxLength: 12 },
     ]
 
     const shippingInputData = [
@@ -115,6 +177,13 @@ class Shipping extends React.Component {
                   onBlur={this.handleBlur}
                   maxLength={item.maxLength ? item.maxLength : null}
                 />
+                <div>
+                  {(error
+                    && error[item.error]
+                    && error[item.error].length > 1)
+                    ? error[item.error]
+                    : null}
+                </div>
               </label>
             )) : null}
             <div>Shipping Method</div>
