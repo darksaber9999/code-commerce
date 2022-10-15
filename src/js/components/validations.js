@@ -26,7 +26,19 @@ export const onlyNumbersValidation = (value) => {
   }
 };
 
+export const checkForDuplicateUser = (value, userArray) => {
+  let isDuplicate = false;
+  userArray.map((user) => {
+    if (user.emailAddress === value) {
+      isDuplicate = true;
+    }
+    return '';
+  });
+  return isDuplicate ? 'There is already a user with this email address' : undefined;
+}
 
+export const passwordMatchValidation = (password1, password2) =>
+  (password1 !== password2) ? 'Passwords must match' : undefined;
 
 export const cardNumberValidation = (cardNumber) => {
   const regexPattern = {

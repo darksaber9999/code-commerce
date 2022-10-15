@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { INIT_USER_CARD } from "../initialState";
-import { onlyNumbersValidation, onlyTextValidation } from "../validations";
+import { checkForDuplicateUser, onlyNumbersValidation, onlyTextValidation, passwordMatchValidation } from "../validations";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -18,13 +18,29 @@ class SignUp extends React.Component {
     let errorText;
     switch (type) {
       case 'emailAddress':
-      case 'password':
-      case 'passwordConfirm':
-        errorText = undefined;
+        errorText = checkForDuplicateUser(value, this.props.info.currentUsers);
         this.setState((prevState) => ({
           error: {
             ...prevState.error,
             [`${type}Error`]: errorText,
+          },
+        }));
+        break;
+      case 'password':
+        errorText = passwordMatchValidation(value, this.state.signUpData.passwordConfirm);
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            [`${type}Error`]: errorText,
+          },
+        }));
+        break;
+      case 'passwordConfirm':
+        errorText = passwordMatchValidation(value, this.state.signUpData.password);
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            [`${type.replace('Confirm', '')}Error`]: errorText,
           },
         }));
         break;
@@ -69,7 +85,7 @@ class SignUp extends React.Component {
     let isError = false;
     Object.keys(signUpData).forEach((val) => {
       if (!signUpData[val].length && val !== 'cart') {
-        errorValue = { ...errorValue, [`${val}Error`]: 'Required' };
+        errorValue = { ...errorValue, [`${val.replace('Confirm', '')}Error`]: 'Required' };
         isError = true;
       }
     });
@@ -101,7 +117,7 @@ class SignUp extends React.Component {
     const inputData = [
       { key: 1, id: 'emailAddress', label: 'Email Address', name: 'emailAddress', type: 'text', error: 'emailAddressError' },
       { key: 2, id: 'password', label: 'Password', name: 'password', type: 'password', error: 'passwordError' },
-      { key: 3, id: 'passwordConfirm', label: 'Confirm Password', name: 'passwordConfirm', type: 'password', error: 'passwordConfirmError' },
+      { key: 3, id: 'passwordConfirm', label: 'Confirm Password', name: 'passwordConfirm', type: 'password', error: 'passwordError' },
       { key: 4, id: 'firstName', label: 'First Name', name: 'firstName', type: 'text', error: 'firstNameError' },
       { key: 5, id: 'lastName', label: 'Last Name', name: 'lastName', type: 'text', error: 'lastNameError' },
       { key: 6, id: 'postalCode', label: 'Postal Code', name: 'postalCode', type: 'text', error: 'postalCodeError', maxLength: 5 },
