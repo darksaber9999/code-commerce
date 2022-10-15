@@ -36,6 +36,7 @@ class Summary extends React.Component {
         {this.props.info.processState.confirm.isDisplayed &&
           <PaymentSummary
             info={this.props.info}
+            findDebitCardType={this.props.findDebitCardType}
             getCartTotal={this.props.getCartTotal}
             getShipping={this.props.getShipping}
           />

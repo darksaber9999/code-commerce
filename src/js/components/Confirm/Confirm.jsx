@@ -41,6 +41,7 @@ class Confirm extends React.Component {
           info={this.props.info}
           getCartTotal={this.props.getCartTotal}
           getShipping={this.props.getShipping}
+          findDebitCardType={this.props.findDebitCardType}
         />
       </div>
     )

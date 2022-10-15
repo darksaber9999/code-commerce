@@ -104,6 +104,19 @@ class CodeCommerce extends React.Component {
     }
   })
 
+  findDebitCardType = (cardNumber) => {
+    const regexPattern = {
+      MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
+      VISA: /^4[0-9]{2,}$/,
+      AMERICAN_EXPRESS: /^3[47][0-9]{5,}$/,
+      DISCOVER: /^6(?:011|5[0-9]{2})[0-9]{3,}$/,
+    };
+    for (const card in regexPattern) {
+      if (cardNumber.replace(/[^\d]/g, '').match(regexPattern[card])) return card;
+    }
+    return '';
+  }
+
   addPaymentInfo = (info) => this.setState((prevState) => {
     return {
       loggedInUser: {
@@ -169,6 +182,7 @@ class CodeCommerce extends React.Component {
         {this.state.processState.payment.isDisplayed &&
           <Payment
             info={this.state}
+            findDebitCardType={this.findDebitCardType}
             addPaymentInfo={this.addPaymentInfo}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}
@@ -180,6 +194,7 @@ class CodeCommerce extends React.Component {
             info={this.state}
             clearCart={this.clearCart}
             addShippingInfo={this.addShippingInfo}
+            findDebitCardType={this.findDebitCardType}
             addPaymentInfo={this.addPaymentInfo}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}

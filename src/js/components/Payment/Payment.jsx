@@ -32,26 +32,13 @@ class Payment extends React.Component {
     return `$${this.props.getCartTotal() + this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping)}`;
   }
 
-  findDebitCardType = (cardNumber) => {
-    const regexPattern = {
-      MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
-      VISA: /^4[0-9]{2,}$/,
-      AMERICAN_EXPRESS: /^3[47][0-9]{5,}$/,
-      DISCOVER: /^6(?:011|5[0-9]{2})[0-9]{3,}$/,
-    };
-    for (const card in regexPattern) {
-      if (cardNumber.replace(/[^\d]/g, '').match(regexPattern[card])) return card;
-    }
-    return '';
-  }
-
   handleValidations = (type, value) => {
     let errorText;
     switch (type) {
       case 'cardNumber':
         errorText = cardNumberValidation(value);
         this.setState((prevState) => ({
-          cardType: this.findDebitCardType(value),
+          cardType: this.props.findDebitCardType(value),
           error: {
             ...prevState.error,
             cardNumberError: errorText,
