@@ -12,6 +12,7 @@ export const INIT_USER_CARD = {
   firstName: '',
   lastName: '',
   postalCode: '',
+  cart: new Map(),
 }
 
 export const INIT_SHIPPING_CARD = {
@@ -39,9 +40,10 @@ export const INIT_PAYMENT_CARD = {
 const dummyUser = {
   emailAddress: 'test@email.com',
   password: 'test',
+  passwordConfirm: 'test',
   firstName: 'Dummy',
   lastName: 'User',
-  postalCode: 0,
+  postalCode: 11111,
   cart: new Map(),
 }
 

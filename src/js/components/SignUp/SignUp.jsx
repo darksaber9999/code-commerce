@@ -2,40 +2,109 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { INIT_USER_CARD } from "../initialState";
+import { onlyNumbersValidation, onlyTextValidation } from "../validations";
 
 class SignUp extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      signUpData: INIT_USER_CARD,
+      error: {},
+    }
+  }
+
+  handleValidations = (type, value) => {
+    let errorText;
+    switch (type) {
+      case 'emailAddress':
+      case 'password':
+      case 'passwordConfirm':
+        errorText = undefined;
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            [`${type}Error`]: errorText,
+          },
+        }));
+        break;
+      case 'firstName':
+      case 'lastName':
+        errorText = onlyTextValidation(value);
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            [`${type}Error`]: errorText,
+          },
+        }));
+        break;
+      case 'postalCode':
+        errorText = onlyNumbersValidation(value);
+        this.setState((prevState) => ({
+          error: {
+            ...prevState.error,
+            [`${type}Error`]: errorText,
+          },
+        }));
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleBlur = ({ target: { name, value } }) => this.handleValidations(name, value);
+
+  handleChange = ({ target: { name, value } }) => {
+    this.setState((prevState) => ({
+      signUpData: {
+        ...prevState.signUpData,
+        [name]: value
+      },
+    }));
+  }
+
+  checkErrorBeforeSave = () => {
+    const { signUpData } = this.state;
+    let errorValue = {};
+    let isError = false;
+    Object.keys(signUpData).forEach((val) => {
+      if (!signUpData[val].length && val !== 'cart') {
+        errorValue = { ...errorValue, [`${val}Error`]: 'Required' };
+        isError = true;
+      }
+    });
+    this.setState((prevState) => ({
+      error: {
+        ...prevState.error,
+        ...errorValue,
+      }
+    }));
+    return isError;
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // Error check
+    const errorCheck = this.checkErrorBeforeSave();
 
-    const newUser = {
-      emailAddress: e.target[0].value,
-      password: e.target[1].value,
-      firstName: e.target[3].value,
-      lastName: e.target[4].value,
-      postalCode: e.target[5].value,
-      cart: new Map(),
+    if (!errorCheck && !Object.values(this.state.error).filter((val) => val !== undefined).length) {
+      this.props.addUser(this.state.signUpData);
+      this.setState({
+        signUpData: INIT_USER_CARD,
+      });
+      this.props.swapAuthOption();
     }
-
-    this.props.addUser(newUser);
-    e.target[0].value = INIT_USER_CARD.emailAddress;
-    e.target[1].value = INIT_USER_CARD.password;
-    e.target[2].value = INIT_USER_CARD.passwordConfirm;
-    e.target[3].value = INIT_USER_CARD.firstName;
-    e.target[4].value = INIT_USER_CARD.lastName;
-    e.target[5].value = INIT_USER_CARD.postalCode;
-    this.props.swapAuthOption();
   }
 
   render() {
+    const { error } = this.state;
+
     const inputData = [
-      { key: 1, id: 'emailAddress', label: 'Email Address', name: 'email', type: 'text', error: 'emailError' },
+      { key: 1, id: 'emailAddress', label: 'Email Address', name: 'emailAddress', type: 'text', error: 'emailAddressError' },
       { key: 2, id: 'password', label: 'Password', name: 'password', type: 'password', error: 'passwordError' },
-      { key: 3, id: 'passwordConfirm', label: 'Confirm Password', name: 'confirmPass', type: 'password', error: 'passwordError' },
-      { key: 4, id: 'firstName', label: 'First Name', name: 'firstName', type: 'text', error: 'nameError' },
-      { key: 5, id: 'lastName', label: 'Last Name', name: 'lastName', type: 'text', error: 'nameError' },
-      { key: 6, id: 'postalCode', label: 'Postal Code', name: 'postalCode', type: 'number', error: 'postalCodeError' },
+      { key: 3, id: 'passwordConfirm', label: 'Confirm Password', name: 'passwordConfirm', type: 'password', error: 'passwordConfirmError' },
+      { key: 4, id: 'firstName', label: 'First Name', name: 'firstName', type: 'text', error: 'firstNameError' },
+      { key: 5, id: 'lastName', label: 'Last Name', name: 'lastName', type: 'text', error: 'lastNameError' },
+      { key: 6, id: 'postalCode', label: 'Postal Code', name: 'postalCode', type: 'text', error: 'postalCodeError', maxLength: 5 },
     ]
 
     const passwordMask = () => {
@@ -50,14 +119,29 @@ class SignUp extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           {inputData.length ? inputData.map((item) => (
-            <input
+            <label
               key={item.key}
-              id={item.id}
-              autoComplete="off"
-              placeholder={item.label}
-              type={item.type}
-              name={item.name}
-            />
+              htmlFor={item.id}
+            >
+              <input
+                id={item.id}
+                autoComplete="off"
+                placeholder={item.label}
+                type={item.type}
+                name={item.name}
+                value={this.state.signUpData && this.state.signUpData[item.name]}
+                onChange={this.handleChange}
+                onBlur={this.handleBlur}
+                maxLength={item.maxLength ? item.maxLength : null}
+              />
+              <div>
+                {(error
+                  && error[item.error]
+                  && error[item.error].length > 1)
+                  ? error[item.error]
+                  : null}
+              </div>
+            </label>
           )) : null}
           <FontAwesomeIcon icon={faEye} onClick={passwordMask} />
           <input type="submit" value="Sign Up" />
