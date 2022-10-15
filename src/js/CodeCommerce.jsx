@@ -80,10 +80,10 @@ class CodeCommerce extends React.Component {
       .map((val) => {
         if (this.state.loggedInUser.cart.has(val)) {
           const { price } = this.state.storeItems[val];
-          const quantity = this.state.loggedInUser.cart.get(val) / 2;
+          const quantity = this.state.loggedInUser.cart.get(val)/*  / 2 */;
 
           // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
-          console.log('Quantity Error -- Work Around Implemented');
+          console.log('CHECK ME');
 
           return price * quantity;
         }

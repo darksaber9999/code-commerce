@@ -19,10 +19,10 @@ class CartItems extends React.Component {
         {storeItemTitles.map((val) => {
           if (cart.has(val)) {
             const { key, title, image, amountOfWork, price } = storeItems[val];
-            const quantity = cart.get(val) / 2;
+            const quantity = cart.get(val)/*  / 2 */;
 
             // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
-            console.log('Quantity Error -- Work Around Implemented');
+            console.log('CHECK ME');
 
             return (
               <div key={key} className={s.cartItem}>
