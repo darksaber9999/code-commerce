@@ -5,8 +5,9 @@ import s from "./PaymentSummary.module.css";
 class PaymentSummary extends React.Component {
   render() {
     const total = this.props.getCartTotal();
-    const shipping = this.props.getShipping('standard');
-    const grandTotal = total + shipping;
+    const discount = this.props.getDiscount();
+    const shipping = this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping);
+    const grandTotal = total - discount + shipping;
     const lastFour = this.props.info.loggedInUser.paymentInfo.cardNumber.slice(-4);
 
     return (

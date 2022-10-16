@@ -4,7 +4,6 @@ import codeImageJS from "../assets/joan-gamell-XmZ4GDAp9G0-unsplash.jpg"
 import codeImageReact from "../assets/ferenc-almasi-c8h0n7fSTqs-unsplash.jpg"
 import codeImageEverything from "../assets/daniel-korpai-pKRNxEguRgM-unsplash.jpg"
 
-
 export const INIT_USER_CARD = {
   emailAddress: '',
   password: '',
@@ -13,6 +12,7 @@ export const INIT_USER_CARD = {
   lastName: '',
   postalCode: '',
   cart: new Map(),
+  promoDiscount: 0,
 }
 
 export const INIT_SHIPPING_CARD = {
@@ -45,6 +45,7 @@ const dummyUser = {
   lastName: 'User',
   postalCode: 11111,
   cart: new Map(),
+  promoDiscount: 0,
 }
 
 const processState = {

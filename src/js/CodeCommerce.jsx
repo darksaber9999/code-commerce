@@ -1,6 +1,6 @@
 import React from "react";
 import { initState } from "./components/initialState";
-import { storeItemTitles } from "./components/constants";
+import { promoCodes, storeItemTitles } from "./components/constants";
 import AuthWindow from "./components/AuthWindow/AuthWindow";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Shipping/Shipping";
@@ -95,6 +95,31 @@ class CodeCommerce extends React.Component {
 
   getShipping = (shipping) => shipping === 'express' ? 29.99 : 0.00;
 
+  getDiscount = () => this.getCartTotal() * this.state.loggedInUser.promoDiscount;
+
+  checkPromoCode = () => {
+    const value = document.getElementById('promo').value;
+    for (let promo in promoCodes) {
+      if (value === promo) {
+        this.setState((prevState) => ({
+          loggedInUser: {
+            ...prevState['loggedInUser'],
+            promoDiscount: promoCodes[promo],
+          }
+        }));
+      }
+    }
+  }
+
+  clearPromoCode = () => {
+    this.setState((prevState) => ({
+      loggedInUser: {
+        ...prevState['loggedInUser'],
+        promoDiscount: 0,
+      }
+    }));
+  }
+
   addShippingInfo = (info) => this.setState((prevState) => {
     return {
       loggedInUser: {
@@ -167,6 +192,8 @@ class CodeCommerce extends React.Component {
             changeQuantity={this.changeQuantity}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}
+            getDiscount={this.getDiscount}
+            checkPromoCode={this.checkPromoCode}
             toggleDisplay={this.toggleDisplay}
           />
         }
@@ -176,6 +203,7 @@ class CodeCommerce extends React.Component {
             addShippingInfo={this.addShippingInfo}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}
+            getDiscount={this.getDiscount}
             toggleDisplay={this.toggleDisplay}
           />
         }
@@ -186,6 +214,7 @@ class CodeCommerce extends React.Component {
             addPaymentInfo={this.addPaymentInfo}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}
+            getDiscount={this.getDiscount}
             toggleDisplay={this.toggleDisplay}
           />
         }
@@ -198,6 +227,8 @@ class CodeCommerce extends React.Component {
             addPaymentInfo={this.addPaymentInfo}
             getCartTotal={this.getCartTotal}
             getShipping={this.getShipping}
+            getDiscount={this.getDiscount}
+            clearPromoCode={this.clearPromoCode}
             toggleDisplay={this.toggleDisplay}
           />
         }

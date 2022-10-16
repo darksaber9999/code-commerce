@@ -11,6 +11,7 @@ class Confirm extends React.Component {
 
   closeOrder = () => {
     this.props.clearCart();
+    this.props.clearPromoCode();
     this.props.addShippingInfo(INIT_SHIPPING_CARD);
     this.props.addPaymentInfo(INIT_PAYMENT_CARD);
   }
@@ -41,6 +42,7 @@ class Confirm extends React.Component {
           info={this.props.info}
           getCartTotal={this.props.getCartTotal}
           getShipping={this.props.getShipping}
+          getDiscount={this.props.getDiscount}
           findDebitCardType={this.props.findDebitCardType}
         />
       </div>

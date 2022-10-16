@@ -3,3 +3,7 @@
   padding: 15px 25px;
   border-radius: 16px;
 }
+
+.hidePromo {
+  display: none;
+}

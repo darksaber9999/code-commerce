@@ -78,3 +78,11 @@ export const CARDICON = {
   AMERICAN_EXPRESS: AMERICAN_EXPRESS_ICON,
   DISCOVER: DISCOVER_ICON,
 };
+
+export const promoCodes = {
+  save10: 0.1,
+  save15: 0.15,
+  save20: 0.20,
+  save25: 0.25,
+  crazyFree: 1,
+};

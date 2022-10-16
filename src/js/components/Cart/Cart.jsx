@@ -53,6 +53,8 @@ class Cart extends React.Component {
               goToStore={this.goToStore}
               getCartTotal={this.props.getCartTotal}
               getShipping={this.props.getShipping}
+              getDiscount={this.props.getDiscount}
+              checkPromoCode={this.props.checkPromoCode}
             />
           </div>
         }

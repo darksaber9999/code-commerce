@@ -22,6 +22,8 @@ class Summary extends React.Component {
           }
           getCartTotal={this.props.getCartTotal}
           getShipping={this.props.getShipping}
+          getDiscount={this.props.getDiscount}
+          checkPromoCode={this.props.checkPromoCode}
         />
         <div className={this.props.info.processState.cart.isDisplayed ? 'btn' : s.hideButtons}>
           <button onClick={this.props.goToStore}>Back to Store</button>
@@ -39,6 +41,7 @@ class Summary extends React.Component {
             findDebitCardType={this.props.findDebitCardType}
             getCartTotal={this.props.getCartTotal}
             getShipping={this.props.getShipping}
+            getDiscount={this.props.getDiscount}
           />
         }
       </div>

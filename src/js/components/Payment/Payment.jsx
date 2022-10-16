@@ -29,7 +29,7 @@ class Payment extends React.Component {
   }
 
   getGrandTotal = () => {
-    return `$${this.props.getCartTotal() + this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping)}`;
+    return `$${this.props.getCartTotal() - this.props.getDiscount() + this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping)}`;
   }
 
   handleValidations = (type, value) => {
@@ -234,6 +234,7 @@ class Payment extends React.Component {
           info={this.props.info}
           getCartTotal={this.props.getCartTotal}
           getShipping={this.props.getShipping}
+          getDiscount={this.props.getDiscount}
         />
       </div>
     )
