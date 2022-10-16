@@ -69,8 +69,7 @@ class Payment extends React.Component {
         this.setState((prevState) => ({
           error: {
             ...prevState.error,
-            expiryMonthError: errorText,
-            expiryYearError: errorText,
+            [`${type}Error`]: errorText,
           },
         }));
         break;
