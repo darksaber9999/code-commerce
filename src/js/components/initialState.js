@@ -26,7 +26,7 @@ export const INIT_SHIPPING_CARD = {
   zipCode: '',
   cellPhoneNumber: '',
   otherPhoneNumber: '',
-  shipping: '',
+  shipping: 'standard',
 }
 
 export const INIT_PAYMENT_CARD = {
