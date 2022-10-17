@@ -85,7 +85,7 @@ class SignUp extends React.Component {
     let errorValue = {};
     let isError = false;
     Object.keys(signUpData).forEach((val) => {
-      if (!signUpData[val].length && val !== 'cart') {
+      if (!signUpData[val].length && val !== 'cart' && val !== 'promoDiscount') {
         errorValue = { ...errorValue, [`${val.replace('Confirm', '')}Error`]: 'Required' };
         isError = true;
       }
