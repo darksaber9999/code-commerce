@@ -150,8 +150,8 @@ class Shipping extends React.Component {
     ]
 
     const shippingInputData = [
-      { key: 21, id: 'standardShipping', value: 'standard', name: 'shipping', type: 'radio', label: 'Standard Shipping' },
-      { key: 22, id: 'expressShipping', value: 'express', name: 'shipping', type: 'radio', label: 'Express Shipping' },
+      { key: 21, id: 'standardShipping', value: 'standard', name: 'shipping', type: 'radio', label: 'Standard Shipping', defaultChecked: true, },
+      { key: 22, id: 'expressShipping', value: 'express', name: 'shipping', type: 'radio', label: 'Express Shipping', defaultChecked: false, },
     ]
 
 
@@ -199,6 +199,7 @@ class Shipping extends React.Component {
                   type={item.type}
                   name={item.name}
                   onChange={this.handleChange}
+                  defaultChecked={item.defaultChecked}
                 />
                 {item.label}
               </label>
