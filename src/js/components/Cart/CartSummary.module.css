@@ -4,6 +4,15 @@
   border-radius: 16px;
 }
 
+.promoLabel {
+  display: flex;
+  align-items: center;
+}
+
 .hidePromo {
   display: none;
+}
+
+.promoCheckMark {
+  font-size: 30px;
 }

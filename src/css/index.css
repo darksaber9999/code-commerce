@@ -51,8 +51,13 @@ input[type=radio] {
   height: initial;
 }
 
+select {
+  height: 28px;
+}
+
 .error-message {
   color: red;
+  padding: 5px;
 }
 
 img {
@@ -81,6 +86,7 @@ input[type=submit] {
 
 .btn {
   display: flex;
+  margin-top: 10px;
 }
 
 button#html,

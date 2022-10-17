@@ -23,7 +23,7 @@ class CartSummary extends React.Component {
         <label
           key='31'
           htmlFor="promo"
-          className={this.props.info.processState.cart.isDisplayed ? '' : s.hidePromo}
+          className={this.props.info.processState.cart.isDisplayed ? s.promoLabel : s.hidePromo}
         >
           <input
             id="promo"
@@ -32,7 +32,11 @@ class CartSummary extends React.Component {
             type="text"
             name="promo"
           />
-          <FontAwesomeIcon icon={faCheck} onClick={this.props.checkPromoCode} />
+          <FontAwesomeIcon
+            icon={faCheck}
+            onClick={this.props.checkPromoCode}
+            className={s.promoCheckMark}
+          />
         </label>
       </div>
     )

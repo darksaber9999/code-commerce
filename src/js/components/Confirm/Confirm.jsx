@@ -26,10 +26,10 @@ class Confirm extends React.Component {
   render() {
     return (
       <div className={s.confirmWindow}>
-        <div>
+        <div className={s.orderConfirmBody}>
           <div>Confirmation</div>
           <div>
-            <FontAwesomeIcon icon={faCircleCheck} />
+            <FontAwesomeIcon icon={faCircleCheck} className={s.checkMarkIcon} />
             <h4>Congratulations.<br />Your order is accepted.</h4>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum, ex molestiae sint, delectus quod beatae necessitatibus corrupti porro similique magnam minus sit quaerat quasi itaque doloribus quos et eius? Nostrum.</p>
           </div>

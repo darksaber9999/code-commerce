@@ -10,7 +10,7 @@ label[for='cardNumber'] {
 .cardImage {
   position: absolute;
   top: 5px;
-  right: 10px;
+  right: 50px;
   width: 50px;
   height: 33px;
 }
