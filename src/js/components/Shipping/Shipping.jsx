@@ -150,15 +150,15 @@ class Shipping extends React.Component {
     ]
 
     const shippingInputData = [
-      { key: 21, id: 'standardShipping', value: 'standard', name: 'shipping', type: 'radio', label: 'Standard Shipping', defaultChecked: true, },
-      { key: 22, id: 'expressShipping', value: 'express', name: 'shipping', type: 'radio', label: 'Express Shipping', defaultChecked: false, },
+      { key: 21, id: 'standardShipping', value: 'standard', name: 'shipping', type: 'radio', label: `Standard: ${this.props.info.shippingMethods.standard}`, defaultChecked: true, },
+      { key: 22, id: 'expressShipping', value: 'express', name: 'shipping', type: 'radio', label: `Express: ${this.props.info.shippingMethods.express}`, defaultChecked: false, },
     ]
 
 
     return (
       <div className={s.shippingWindow}>
         <div>
-          <div>Shipping Information</div>
+          <h3>Shipping Information</h3>
           <form onSubmit={this.handleSubmit}>
             {inputData.length ? inputData.map((item) => (
               <label
@@ -186,7 +186,7 @@ class Shipping extends React.Component {
                 </div>
               </label>
             )) : null}
-            <div>Shipping Method</div>
+            <h3>Shipping Method</h3>
             {shippingInputData.length ? shippingInputData.map((item) => (
               <label
                 key={item.key}
