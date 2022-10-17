@@ -1,0 +1,10 @@
+label[for='password'] {
+  position: relative;
+}
+
+.passwordEyeIcon {
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  font-size: 30px;
+}

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { INIT_USER_CARD } from "../initialState";
 import { checkForDuplicateUser, onlyNumbersValidation, onlyTextValidation, passwordMatchValidation } from "../validations";
+import s from "./SignUp.module.css";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -157,9 +158,15 @@ class SignUp extends React.Component {
                   ? error[item.error]
                   : null}
               </div>
+              {item.id === 'password' ? (
+                <FontAwesomeIcon
+                  icon={faEye}
+                  onClick={passwordMask}
+                  className={s.passwordEyeIcon}
+                />
+              ) : null}
             </label>
           )) : null}
-          <FontAwesomeIcon icon={faEye} onClick={passwordMask} />
           <input type="submit" value="Sign Up" />
         </form>
       </div>

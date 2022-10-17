@@ -1,0 +1,23 @@
+label[for='password'] {
+  position: relative;
+}
+
+.passwordEyeIcon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 30px;
+}
+
+.facebookButton {
+  background-color: #415A93;
+  border-color: #415A93;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.facebookButton span {
+  text-transform: lowercase;
+  margin-right: 30px;
+  font-size: 30px;
+}

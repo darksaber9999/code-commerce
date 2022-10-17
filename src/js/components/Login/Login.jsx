@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import s from "./Login.module.css";
 
 
 class Login extends React.Component {
@@ -126,10 +127,16 @@ class Login extends React.Component {
                   ? error[item.error]
                   : null}
               </div>
+              {item.id === 'password' ? (
+                <FontAwesomeIcon
+                  icon={faEye}
+                  onClick={passwordMask}
+                  className={s.passwordEyeIcon}
+                />
+              ) : null}
             </label>
           )) : null}
-          <FontAwesomeIcon icon={faEye} onClick={passwordMask} />
-          <button>Login with Facebook</button>
+          <button className={s.facebookButton}><span>f</span>Login with Facebook</button>
           <input type="submit" />
         </form>
       </div>
