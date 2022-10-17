@@ -1,3 +1,10 @@
 .cartWindow {
   display: flex;
 }
+
+@media (max-width: 760px) {
+  .cartWindow {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -4,10 +4,17 @@
 }
 
 .orderConfirmBody {
-  max-width: 700px;
+  max-width: 500px;
 }
 
 .checkMarkIcon {
   font-size: 60px;
   color: green;
+}
+
+@media (max-width: 700px) {
+  .confirmWindow {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
