@@ -169,76 +169,78 @@ class CodeCommerce extends React.Component {
           <h1>The Code Corner</h1>
           <p>Your one stop shop for all the lines of code you can handle!</p>
         </div>
-        {this.state.processState.progress.isDisplayed &&
-          <Progress
-            info={this.state}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.authWindow.isDisplayed &&
-          <AuthWindow
-            info={this.state}
-            toggleIsLoggedIn={this.toggleIsLoggedIn}
-            setLoggedInUser={this.setLoggedInUser}
-            logoutUser={this.logoutUser}
-            addUser={this.addUser}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.cart.isDisplayed &&
-          <Cart
-            info={this.state}
-            removeFromCart={this.removeFromCart}
-            changeQuantity={this.changeQuantity}
-            getCartTotal={this.getCartTotal}
-            getShipping={this.getShipping}
-            getDiscount={this.getDiscount}
-            checkPromoCode={this.checkPromoCode}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.shipping.isDisplayed &&
-          <Shipping
-            info={this.state}
-            addShippingInfo={this.addShippingInfo}
-            getCartTotal={this.getCartTotal}
-            getShipping={this.getShipping}
-            getDiscount={this.getDiscount}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.payment.isDisplayed &&
-          <Payment
-            info={this.state}
-            findDebitCardType={this.findDebitCardType}
-            addPaymentInfo={this.addPaymentInfo}
-            getCartTotal={this.getCartTotal}
-            getShipping={this.getShipping}
-            getDiscount={this.getDiscount}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.confirm.isDisplayed &&
-          <Confirm
-            info={this.state}
-            clearCart={this.clearCart}
-            addShippingInfo={this.addShippingInfo}
-            findDebitCardType={this.findDebitCardType}
-            addPaymentInfo={this.addPaymentInfo}
-            getCartTotal={this.getCartTotal}
-            getShipping={this.getShipping}
-            getDiscount={this.getDiscount}
-            clearPromoCode={this.clearPromoCode}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
-        {this.state.processState.store.isDisplayed &&
-          <Store
-            info={this.state}
-            addToCart={this.addToCart}
-            toggleDisplay={this.toggleDisplay}
-          />
-        }
+        <div className="store-body">
+          {this.state.processState.progress.isDisplayed &&
+            <Progress
+              info={this.state}
+              toggleDisplay={this.toggleDisplay}
+            />
+          }
+          {this.state.processState.authWindow.isDisplayed &&
+            <AuthWindow
+              info={this.state}
+              toggleIsLoggedIn={this.toggleIsLoggedIn}
+              setLoggedInUser={this.setLoggedInUser}
+              logoutUser={this.logoutUser}
+              addUser={this.addUser}
+              toggleDisplay={this.toggleDisplay}
+            />
+          }
+          {this.state.processState.cart.isDisplayed &&
+            <Cart
+              info={this.state}
+              removeFromCart={this.removeFromCart}
+              changeQuantity={this.changeQuantity}
+              getCartTotal={this.getCartTotal}
+              getShipping={this.getShipping}
+              getDiscount={this.getDiscount}
+              checkPromoCode={this.checkPromoCode}
+              toggleDisplay={this.toggleDisplay}
+            />
+          }
+          {this.state.processState.shipping.isDisplayed &&
+            <Shipping
+              info={this.state}
+              addShippingInfo={this.addShippingInfo}
+              getCartTotal={this.getCartTotal}
+              getShipping={this.getShipping}
+              getDiscount={this.getDiscount}
+              toggleDisplay={this.toggleDisplay}
+            />
+          }
+          {this.state.processState.payment.isDisplayed &&
+            <Payment
+              info={this.state}
+              findDebitCardType={this.findDebitCardType}
+              addPaymentInfo={this.addPaymentInfo}
+              getCartTotal={this.getCartTotal}
+              getShipping={this.getShipping}
+              getDiscount={this.getDiscount}
+              toggleDisplay={this.toggleDisplay}
+            />
+          }
+          {this.state.processState.confirm.isDisplayed &&
+            <Confirm
+              info={this.state}
+              clearCart={this.clearCart}
+              addShippingInfo={this.addShippingInfo}
+              findDebitCardType={this.findDebitCardType}
+              addPaymentInfo={this.addPaymentInfo}
+              getCartTotal={this.getCartTotal}
+              getShipping={this.getShipping}
+              getDiscount={this.getDiscount}
+              clearPromoCode={this.clearPromoCode}
+              toggleDisplay={this.toggleDisplay}
+            />
+          }
+          {this.state.processState.store.isDisplayed &&
+            <Store
+              info={this.state}
+              addToCart={this.addToCart}
+              toggleDisplay={this.toggleDisplay}
+            />
+          }
+        </div>
       </div>
     )
   }

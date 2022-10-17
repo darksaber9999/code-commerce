@@ -119,7 +119,7 @@ class Login extends React.Component {
                 name={item.name}
                 onBlur={this.handleBlur}
               />
-              <div>
+              <div className="error-message">
                 {(error
                   && error[item.error]
                   && error[item.error].length > 1)

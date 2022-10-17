@@ -180,7 +180,7 @@ class Payment extends React.Component {
                   onBlur={this.handleBlur}
                   maxLength={item.maxLength ? item.maxLength : null}
                 />
-                <div>
+                <div className="error-message">
                   {(error
                     && error[item.error]
                     && error[item.error].length > 1)
@@ -214,7 +214,7 @@ class Payment extends React.Component {
                       <option key={num} value={num}>{num}</option>
                     ))}
                   </select>
-                  <span>
+                  <span className="error-message">
                     {(error
                       && error[item.error]
                       && error[item.error].length > 1)

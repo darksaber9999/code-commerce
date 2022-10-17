@@ -177,7 +177,7 @@ class Shipping extends React.Component {
                   onBlur={this.handleBlur}
                   maxLength={item.maxLength ? item.maxLength : null}
                 />
-                <div>
+                <div className="error-message">
                   {(error
                     && error[item.error]
                     && error[item.error].length > 1)
