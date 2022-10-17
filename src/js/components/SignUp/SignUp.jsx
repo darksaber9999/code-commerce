@@ -115,7 +115,7 @@ class SignUp extends React.Component {
     const { error } = this.state;
 
     const inputData = [
-      { key: 1, id: 'emailAddress', label: 'Email Address', name: 'emailAddress', type: 'text', error: 'emailAddressError' },
+      { key: 1, id: 'emailAddress', label: 'Email Address', name: 'emailAddress', type: 'email', error: 'emailAddressError' },
       { key: 2, id: 'password', label: 'Password', name: 'password', type: 'password', error: 'passwordError' },
       { key: 3, id: 'passwordConfirm', label: 'Confirm Password', name: 'passwordConfirm', type: 'password', error: 'passwordError' },
       { key: 4, id: 'firstName', label: 'First Name', name: 'firstName', type: 'text', error: 'firstNameError' },

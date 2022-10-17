@@ -92,7 +92,7 @@ class Login extends React.Component {
     const { error } = this.state;
 
     const inputData = [
-      { key: 1, id: 'emailAddress', label: 'Email Address', name: 'emailAddress', type: 'text', error: 'emailAddressError' },
+      { key: 1, id: 'emailAddress', label: 'Email Address', name: 'emailAddress', type: 'email', error: 'emailAddressError' },
       { key: 2, id: 'password', label: 'Password', name: 'password', type: 'password', error: 'passwordError' },
     ]
 
