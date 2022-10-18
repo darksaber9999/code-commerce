@@ -2,7 +2,7 @@
   max-width: 700px;
   margin: auto;
   background-color: dimgray;
-  padding: 15px 25px;
+  padding: 8px 10px;
   border-radius: 16px;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .storeItem:not(:last-of-type) {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .imageWrapper {
@@ -34,6 +34,12 @@
   align-items: center;
 }
 
+.infoWrapper p,
+.infoWrapper h3,
+.infoWrapper h4 {
+  margin: 10px 0;
+}
+
 @media (max-width: 600px) {
   .storeItem {
     flex-direction: column;
@@ -48,6 +54,7 @@
 
   .infoWrapper button {
     flex-basis: 100%;
+    margin-top: 10px;
   }
 }
 
