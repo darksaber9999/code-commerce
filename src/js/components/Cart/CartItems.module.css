@@ -1,8 +1,8 @@
 .cartItemsContainer {
-  max-width: 700px;
+  max-width: 550px;
   margin: auto;
   background-color: dimgray;
-  padding: 15px 25px;
+  padding: 8px 10px;
   border-radius: 16px;
 }
 
@@ -13,13 +13,18 @@
   flex-direction: row;
 }
 
+.cartItem div:nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+
 .cartItem:not(:last-of-type) {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .imageWrapper {
   max-width: 400px;
-  margin: 0 10px;
+  margin-left: 10px;
 }
 
 .imageWrapper img {
@@ -34,44 +39,34 @@
   align-items: center;
 }
 
-.nameWrapper,
 .btnWrapper {
   display: flex;
   align-items: center;
 }
 
-.nameWrapper h3,
-.nameWrapper p {
-  margin: 0;
-}
-
-.nameWrapper span,
 .btnWrapper h4 {
   margin: 0 10px
 }
 
-@media (max-width: 600px) {
-  .storeItem {
-    flex-direction: column;
+.infoWrapper h3,
+.infoWrapper h4:not(.btnWrapper h4) {
+  margin: 15px 0;
+}
+
+@media (max-width: 840px) {
+  .cartItem {
+    flex-wrap: wrap;
   }
 
   .infoWrapper {
     flex-direction: row;
-    justify-content: space-evenly;
-    margin-left: 0;
-    flex-wrap: wrap;
-  }
-
-  .infoWrapper button {
-    flex-basis: 100%;
+    justify-content: space-around;
+    gap: 10px;
   }
 }
 
-@media (max-width: 460px) {
-
-  .infoWrapper h3,
-  .infoWrapper p,
-  .infoWrapper h4 {
-    flex-basis: 100%;
+@media (max-width: 500px) {
+  .infoWrapper {
+    flex-wrap: wrap;
   }
 }

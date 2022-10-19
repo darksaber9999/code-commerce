@@ -18,7 +18,7 @@ class CartItems extends React.Component {
       <div className={s.cartItemsContainer}>
         {storeItemTitles.map((val) => {
           if (cart.has(val)) {
-            const { key, title, image, amountOfWork, price } = storeItems[val];
+            const { key, title, image, price } = storeItems[val];
             const quantity = cart.get(val)/*  / 2 */;
 
             // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
@@ -27,26 +27,23 @@ class CartItems extends React.Component {
             return (
               <div key={key} className={s.cartItem}>
                 <div>
-                  <button id={val} onClick={this.handleRemoveItem}>X</button>
-                </div>
-                <div className={s.imageWrapper}>
-                  <img src={image} alt="computer code on a screen" />
+                  <div>
+                    <button id={val} onClick={this.handleRemoveItem}>x</button>
+                  </div>
+                  <div className={s.imageWrapper}>
+                    <img src={image} alt="computer code on a screen" />
+                  </div>
                 </div>
                 <div className={s.infoWrapper}>
-                  <div className={s.nameWrapper}>
-                    <h3>{title}</h3>
-                    <span> -- </span>
-                    <p>{amountOfWork}</p>
-                  </div>
-                  <h4>{price}</h4>
+                  <h3>{title}</h3>
+                  <h4>${price} ea.</h4>
                   <span className={s.btnWrapper}>
-                    <h4>Quantity: </h4>
-
+                    <h4>Qty:</h4>
                     <button id="subtract" className={val} onClick={this.changeQuantity}>-</button>
                     <h4>{quantity}</h4>
                     <button id="add" className={val} onClick={this.changeQuantity}>+</button>
                   </span>
-                  <h4>{price * quantity}</h4>
+                  <h4>${price * quantity}</h4>
                 </div>
               </div>
             )

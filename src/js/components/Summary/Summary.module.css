@@ -5,3 +5,9 @@
 .hideButtons {
   display: none;
 }
+
+@media (max-width: 760px) {
+  .summaryWindow {
+    margin-top: 20px;
+  }
+}
