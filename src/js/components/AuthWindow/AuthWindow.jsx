@@ -55,7 +55,7 @@ class AuthWindow extends React.Component {
           />
         }
         {this.props.info.isLoggedIn &&
-          <button onClick={this.props.logoutUser}>Logout</button>
+          <button className={s.logoutButton} onClick={this.props.logoutUser}>Logout</button>
         }
       </div>
     )

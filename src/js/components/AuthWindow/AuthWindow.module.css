@@ -13,3 +13,7 @@
 .authWindowSwapperHidden {
   display: none;
 }
+
+.logoutButton {
+  margin-top: 70px;
+}
