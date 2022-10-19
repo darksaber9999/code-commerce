@@ -167,7 +167,7 @@ class SignUp extends React.Component {
               ) : null}
             </label>
           )) : null}
-          <input type="submit" value="Sign Up" />
+          <input type="submit" value="Sign Up" className={s.submitButton} />
         </form>
       </div>
     )

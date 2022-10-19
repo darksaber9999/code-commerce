@@ -27,7 +27,7 @@ class AuthWindow extends React.Component {
     return (
       <div>
         <button onClick={this.goToStore}>Back to Store</button>
-        <div className={this.props.info.isLoggedIn ? s.authWindowSwapperHidden : ''} onChange={this.swapAuthOption}>
+        <div className={this.props.info.isLoggedIn ? s.authWindowSwapperHidden : s.authWindowSwapper} onChange={this.swapAuthOption}>
           <label htmlFor="login">
             <input type="radio" value="login" id="login" name="authOption" defaultChecked={this.props.info.processState.login.isDisplayed} />
             <span>Login</span>

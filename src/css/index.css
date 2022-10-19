@@ -43,11 +43,12 @@ label {
 input {
   width: 85%;
   height: 34px;
+  border-radius: 8px;
 }
 
 input[type=radio] {
-  width: initial;
-  height: initial;
+  width: 20px;
+  height: 20px;
 }
 
 select {

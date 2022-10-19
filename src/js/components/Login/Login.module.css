@@ -5,11 +5,12 @@ label[for='password'] {
 .passwordEyeIcon {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 0;
   font-size: 30px;
 }
 
 .facebookButton {
+  margin-top: 20px;
   background-color: #415A93;
   border-color: #415A93;
   color: white;
@@ -18,6 +19,6 @@ label[for='password'] {
 
 .facebookButton span {
   text-transform: lowercase;
-  margin-right: 30px;
+  margin-right: 15px;
   font-size: 30px;
 }

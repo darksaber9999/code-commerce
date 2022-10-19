@@ -5,6 +5,10 @@ label[for='password'] {
 .passwordEyeIcon {
   position: absolute;
   top: 30px;
-  right: 5px;
+  right: 0;
   font-size: 30px;
+}
+
+.submitButton {
+  margin-top: 20px;
 }

@@ -1,3 +1,15 @@
+.authWindowSwapper {
+  display: flex;
+  margin: 20px 0;
+}
+
+.authWindowSwapper label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
 .authWindowSwapperHidden {
   display: none;
 }
