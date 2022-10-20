@@ -105,10 +105,10 @@ class SignUp extends React.Component {
 
     if (!errorCheck && !Object.values(this.state.error).filter((val) => val !== undefined).length) {
       this.props.addUser(this.state.signUpData);
+      this.props.signInSuccess(this.state.signUpData);
       this.setState({
         signUpData: INIT_USER_CARD,
       });
-      this.props.swapAuthOption();
     }
   }
 

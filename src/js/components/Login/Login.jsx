@@ -13,12 +13,6 @@ class Login extends React.Component {
     }
   }
 
-  signInSuccess = (user) => {
-    this.props.toggleIsLoggedIn();
-    this.props.setLoggedInUser(user);
-    this.props.goToCart();
-  }
-
   handleValidations = (type, value) => {
     let errorText;
     switch (type) {
@@ -66,7 +60,7 @@ class Login extends React.Component {
     if (!errorCheck && !Object.values(this.state.error).filter((val) => val !== undefined).length) {
       this.props.info.currentUsers.map((user) => {
         if (user.emailAddress === e.target[0].value && user.password === e.target[1].value) {
-          this.signInSuccess(user);
+          this.props.signInSuccess(user);
           return true;
         }
         if (user.emailAddress === e.target[0].value && user.password !== e.target[1].value) {

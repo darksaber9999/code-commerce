@@ -23,6 +23,12 @@ class AuthWindow extends React.Component {
     this.toggleDisplay(displayNames.login);
   }
 
+  signInSuccess = (user) => {
+    this.props.toggleIsLoggedIn();
+    this.props.setLoggedInUser(user);
+    this.goToCart();
+  }
+
   render() {
     return (
       <div>
@@ -42,16 +48,14 @@ class AuthWindow extends React.Component {
           <SignUp
             info={this.props.info}
             addUser={this.props.addUser}
-            swapAuthOption={this.swapAuthOption}
+            signInSuccess={this.signInSuccess}
           />
         }
         {(this.props.info.processState.login.isDisplayed &&
           !this.props.info.isLoggedIn) &&
           <Login
             info={this.props.info}
-            toggleIsLoggedIn={this.props.toggleIsLoggedIn}
-            setLoggedInUser={this.props.setLoggedInUser}
-            goToCart={this.goToCart}
+            signInSuccess={this.signInSuccess}
           />
         }
         {this.props.info.isLoggedIn &&
