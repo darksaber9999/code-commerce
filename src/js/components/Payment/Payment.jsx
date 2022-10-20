@@ -161,7 +161,7 @@ class Payment extends React.Component {
 
     return (
       <div className={s.paymentWindow}>
-        <div>
+        <div className={s.paymentFormWrapper}>
           <h3>Payment Information</h3>
           <form onSubmit={this.handleSubmit}>
             {inputData.length ? inputData.map((item) => (

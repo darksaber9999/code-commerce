@@ -3,6 +3,10 @@
   justify-content: space-between;
 }
 
+.paymentFormWrapper {
+  margin-right: 10px;
+}
+
 label[for='cardNumber'] {
   position: relative;
 }
@@ -19,5 +23,9 @@ label[for='cardNumber'] {
   .paymentWindow {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .paymentFormWrapper {
+    margin-right: 0;
   }
 }
