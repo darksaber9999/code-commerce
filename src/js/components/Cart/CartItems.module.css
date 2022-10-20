@@ -1,6 +1,6 @@
 .cartItemsContainer {
   max-width: 550px;
-  margin: auto;
+  margin-bottom: auto;
   background-color: dimgray;
   padding: 8px 10px;
   border-radius: 16px;
