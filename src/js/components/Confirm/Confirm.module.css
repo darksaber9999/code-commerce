@@ -5,6 +5,7 @@
 
 .orderConfirmBody {
   max-width: 500px;
+  margin-right: 10px;
 }
 
 .checkMarkIcon {
@@ -16,5 +17,9 @@
   .confirmWindow {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .orderConfirmBody {
+    margin-right: 0;
   }
 }
