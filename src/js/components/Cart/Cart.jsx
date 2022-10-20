@@ -29,13 +29,13 @@ class Cart extends React.Component {
     return (
       <div>
         {isEmpty(this.props.info.loggedInUser) &&
-          <div>
+          <div className={s.emptyCartWindow}>
             <h2>Please log in to add an item to the cart.</h2>
             <button onClick={this.goToAuthWindow}>Login/Sign Up</button>
           </div>
         }
         {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size === 0) &&
-          <div>
+          <div className={s.emptyCartWindow}>
             <h2>Your cart is currently empty. Add an item.</h2>
             <button onClick={this.goToStore}>Go to Store</button>
           </div>
