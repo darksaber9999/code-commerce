@@ -27,7 +27,7 @@ class StoreItems extends React.Component {
               <div className={s.infoWrapper}>
                 <h3>{title}</h3>
                 <p>{amountOfWork}</p>
-                <h4>{price}</h4>
+                <h4>${price} ea.</h4>
                 <button data-item={title} onClick={this.addToCart}>Add to Cart</button>
               </div>
             </div>
