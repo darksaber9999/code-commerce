@@ -57,6 +57,7 @@ select {
 
 .error-message {
   color: red;
+  font-size: 15px;
   padding: 5px;
 }
 
@@ -94,7 +95,8 @@ input[type=submit] {
   border-bottom-right-radius: initial;
 }
 
-.btn button:nth-of-type(2) {
+.btn button:nth-of-type(2),
+.btn input[type=submit] {
   border-top-left-radius: initial;
   border-bottom-left-radius: initial;
 }
