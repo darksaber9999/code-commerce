@@ -5,11 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class CartSummary extends React.Component {
   render() {
-    const total = this.props.getCartTotal();
-    const discount = this.props.getDiscount();
-    const shipping = (this.props.shippingInfo) ?
-      this.props.getShipping(this.props.shippingInfo.shipping) :
-      this.props.getShipping('');
+    const { getCartTotal, getDiscount, shippingInfo, getShipping, info, checkPromoCode } = this.props;
+    const { processState: { cart } } = info;
+
+    const total = getCartTotal();
+    const discount = getDiscount();
+    const shipping = (shippingInfo) ?
+      getShipping(shippingInfo.shipping) :
+      getShipping('');
     const grandTotal = total - discount + shipping;
 
     return (
@@ -23,7 +26,7 @@ class CartSummary extends React.Component {
         <label
           key='31'
           htmlFor="promo"
-          className={this.props.info.processState.cart.isDisplayed ? s.promoLabel : s.hidePromo}
+          className={cart.isDisplayed ? s.promoLabel : s.hidePromo}
         >
           <input
             id="promo"
@@ -34,7 +37,7 @@ class CartSummary extends React.Component {
           />
           <FontAwesomeIcon
             icon={faCheck}
-            onClick={this.props.checkPromoCode}
+            onClick={checkPromoCode}
             className={s.promoCheckMark}
           />
         </label>

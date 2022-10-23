@@ -1,6 +1,4 @@
 import React from "react";
-import { initState } from "./components/initialState";
-import { promoCodes, storeItemTitles } from "./components/constants";
 import AuthWindow from "./components/AuthWindow/AuthWindow";
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Shipping/Shipping";
@@ -8,6 +6,8 @@ import Payment from "./components/Payment/Payment";
 import Confirm from "./components/Confirm/Confirm";
 import Progress from "./components/Progress/Progress";
 import Store from "./components/Store/Store";
+import { initState } from "./components/initialState";
+import { promoCodes, storeItemTitles } from "./components/constants";
 
 class CodeCommerce extends React.Component {
   constructor() {
@@ -15,16 +15,16 @@ class CodeCommerce extends React.Component {
     this.state = initState
   }
 
-  toggleIsLoggedIn = () => this.setState((prevState) => ({ isLoggedIn: !(prevState.isLoggedIn) }))
+  toggleIsLoggedIn = () => this.setState((prevState) => ({ isLoggedIn: !(prevState.isLoggedIn) }));
 
-  setLoggedInUser = (user) => this.setState((prevState) => ({ loggedInUser: user }))
+  setLoggedInUser = (user) => this.setState((prevState) => ({ loggedInUser: user }));
 
   logoutUser = () => {
     this.toggleIsLoggedIn();
     this.setLoggedInUser({});
-  }
+  };
 
-  addUser = (newUser) => this.setState((prevState) => ({ currentUsers: prevState['currentUsers'].concat([newUser]) }))
+  addUser = (newUser) => this.setState((prevState) => ({ currentUsers: prevState['currentUsers'].concat([newUser]) }));
 
   addToCart = (item) => this.setState((prevState) => {
     const amount = prevState.loggedInUser.cart.has(item) ?
@@ -37,7 +37,7 @@ class CodeCommerce extends React.Component {
         cart: prevState['loggedInUser']['cart'].set(item, amount),
       }
     }
-  })
+  });
 
   removeFromCart = (item) => this.setState((prevState) => {
     prevState['loggedInUser']['cart'].delete(item);
@@ -47,7 +47,7 @@ class CodeCommerce extends React.Component {
         cart: prevState['loggedInUser']['cart'],
       }
     }
-  })
+  });
 
   changeQuantity = (method, item) => this.setState((prevState) => {
     let tempAmount = prevState.loggedInUser.cart.get(item);
@@ -62,7 +62,7 @@ class CodeCommerce extends React.Component {
         cart: prevState['loggedInUser']['cart'],
       }
     }
-  })
+  });
 
   clearCart = () => this.setState((prevState) => {
     return {
@@ -71,27 +71,26 @@ class CodeCommerce extends React.Component {
         cart: new Map(),
       }
     }
-  })
+  });
 
   getSum = (total, num) => total + num;
 
   getCartTotal = () => {
-    const total = storeItemTitles
-      .map((val) => {
-        if (this.state.loggedInUser.cart.has(val)) {
-          const { price } = this.state.storeItems[val];
-          const quantity = this.state.loggedInUser.cart.get(val)/*  / 2 */;
+    const total = storeItemTitles.map((val) => {
+      if (this.state.loggedInUser.cart.has(val)) {
+        const { price } = this.state.storeItems[val];
+        const quantity = this.state.loggedInUser.cart.get(val)/*  / 2 */;
 
-          // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
-          console.log('CHECK ME');
+        // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
+        console.log('CHECK ME');
 
-          return price * quantity;
-        }
-        return 0;
-      })
+        return price * quantity;
+      }
+      return 0;
+    })
       .reduce(this.getSum, 0);
     return total;
-  }
+  };
 
   getShipping = (shipping) => shipping === 'express' ? 29.99 : 0;
 
@@ -109,7 +108,7 @@ class CodeCommerce extends React.Component {
         }));
       }
     }
-  }
+  };
 
   clearPromoCode = () => {
     this.setState((prevState) => ({
@@ -118,7 +117,7 @@ class CodeCommerce extends React.Component {
         promoDiscount: 0,
       }
     }));
-  }
+  };
 
   addShippingInfo = (info) => this.setState((prevState) => {
     return {
@@ -127,7 +126,7 @@ class CodeCommerce extends React.Component {
         shippingInfo: info,
       }
     }
-  })
+  });
 
   findDebitCardType = (cardNumber) => {
     const regexPattern = {
@@ -140,7 +139,7 @@ class CodeCommerce extends React.Component {
       if (cardNumber.replace(/[^\d]/g, '').match(regexPattern[card])) return card;
     }
     return '';
-  }
+  };
 
   addPaymentInfo = (info) => this.setState((prevState) => {
     return {
@@ -149,7 +148,7 @@ class CodeCommerce extends React.Component {
         paymentInfo: info,
       }
     }
-  })
+  });
 
   toggleDisplay = (name) => this.setState((prevState) => {
     return {
@@ -160,7 +159,7 @@ class CodeCommerce extends React.Component {
         },
       }
     }
-  })
+  });
 
   render() {
     return (
@@ -243,7 +242,7 @@ class CodeCommerce extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default CodeCommerce;

@@ -1,9 +1,11 @@
 import React from "react";
+import Summary from "../Summary/Summary";
+import s from "./Shipping.module.css";
 import { displayNames } from "../constants";
 import { INIT_SHIPPING_CARD } from "../initialState";
-import Summary from "../Summary/Summary";
 import { onlyNumbersValidation } from "../validations";
-import s from "./Shipping.module.css";
+
+const { shipping, cart, payment } = displayNames;
 
 class Shipping extends React.Component {
   constructor(props) {
@@ -27,13 +29,13 @@ class Shipping extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToCart = () => {
-    this.toggleDisplay(displayNames.shipping)
-    this.toggleDisplay(displayNames.cart)
+    this.toggleDisplay(shipping)
+    this.toggleDisplay(cart)
   }
 
   goToPayment = () => {
-    this.toggleDisplay(displayNames.shipping)
-    this.toggleDisplay(displayNames.payment)
+    this.toggleDisplay(shipping)
+    this.toggleDisplay(payment)
   }
 
   handleValidations = (type, value) => {
@@ -134,7 +136,9 @@ class Shipping extends React.Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { error, shippingData } = this.state;
+    const { info, getCartTotal, getDiscount, getShipping } = this.props;
+    const { shippingMethods: { standard, express } } = info;
 
     const inputData = [
       { key: 1, id: 'addressTitle', label: 'Address Title', name: 'addressTitle', type: 'text', error: 'addressTitleError' },
@@ -150,8 +154,8 @@ class Shipping extends React.Component {
     ]
 
     const shippingInputData = [
-      { key: 21, id: 'standardShipping', value: 'standard', name: 'shipping', type: 'radio', label: `Standard: ${this.props.info.shippingMethods.standard}`, defaultChecked: true, },
-      { key: 22, id: 'expressShipping', value: 'express', name: 'shipping', type: 'radio', label: `Express: ${this.props.info.shippingMethods.express}`, defaultChecked: false, },
+      { key: 21, id: 'standardShipping', value: 'standard', name: 'shipping', type: 'radio', label: `Standard: ${standard}`, defaultChecked: true, },
+      { key: 22, id: 'expressShipping', value: 'express', name: 'shipping', type: 'radio', label: `Express: ${express}`, defaultChecked: false, },
     ]
 
 
@@ -211,11 +215,11 @@ class Shipping extends React.Component {
           </form>
         </div>
         <Summary
-          info={this.props.info}
-          shippingInfo={this.state.shippingData}
-          getCartTotal={this.props.getCartTotal}
-          getShipping={this.props.getShipping}
-          getDiscount={this.props.getDiscount}
+          info={info}
+          shippingInfo={shippingData}
+          getCartTotal={getCartTotal}
+          getShipping={getShipping}
+          getDiscount={getDiscount}
         />
       </div>
     )

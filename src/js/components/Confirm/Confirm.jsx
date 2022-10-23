@@ -1,9 +1,9 @@
 import React from "react";
-import { displayNames } from "../constants";
 import Summary from "../Summary/Summary";
+import s from "./Confirm.module.css";
+import { displayNames } from "../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import s from "./Confirm.module.css";
 import { INIT_PAYMENT_CARD, INIT_SHIPPING_CARD } from "../initialState";
 
 class Confirm extends React.Component {
@@ -24,6 +24,8 @@ class Confirm extends React.Component {
   }
 
   render() {
+    const { info, getCartTotal, getShipping, getDiscount, findDebitCardType } = this.props;
+
     return (
       <div className={s.confirmWindow}>
         <div className={s.orderConfirmBody}>
@@ -39,11 +41,11 @@ class Confirm extends React.Component {
           </div>
         </div>
         <Summary
-          info={this.props.info}
-          getCartTotal={this.props.getCartTotal}
-          getShipping={this.props.getShipping}
-          getDiscount={this.props.getDiscount}
-          findDebitCardType={this.props.findDebitCardType}
+          info={info}
+          getCartTotal={getCartTotal}
+          getShipping={getShipping}
+          getDiscount={getDiscount}
+          findDebitCardType={findDebitCardType}
         />
       </div>
     )

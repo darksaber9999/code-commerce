@@ -1,22 +1,26 @@
 import React from "react";
-import { displayNames } from "../constants";
 import StoreItems from "./StoreItems";
+import { displayNames } from "../constants";
+
+const { store, authWindow, progress, cart } = displayNames;
 
 class Store extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToAuthWindow = () => {
-    this.toggleDisplay(displayNames.store);
-    this.toggleDisplay(displayNames.authWindow);
+    this.toggleDisplay(store);
+    this.toggleDisplay(authWindow);
   }
 
   goToCart = () => {
-    this.toggleDisplay(displayNames.store);
-    this.toggleDisplay(displayNames.progress);
-    this.toggleDisplay(displayNames.cart);
+    this.toggleDisplay(store);
+    this.toggleDisplay(progress);
+    this.toggleDisplay(cart);
   }
 
   render() {
+    const { info, addToCart } = this.props;
+
     return (
       <div>
         <div className="btn">
@@ -24,8 +28,8 @@ class Store extends React.Component {
           <button onClick={this.goToCart}>Go to Cart</button>
         </div>
         <StoreItems
-          info={this.props.info}
-          addToCart={this.props.addToCart}
+          info={info}
+          addToCart={addToCart}
           goToAuthWindow={this.goToAuthWindow}
         />
       </div>

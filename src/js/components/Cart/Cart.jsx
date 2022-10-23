@@ -1,60 +1,65 @@
 import React from "react";
-import { displayNames } from "../constants";
-import { isEmpty } from "../validations";
 import CartItems from "./CartItems";
 import s from "./Cart.module.css";
 import Summary from "../Summary/Summary";
+import { displayNames } from "../constants";
+import { isEmpty } from "../validations";
+
+const { authWindow, progress, cart, store, shipping } = displayNames;
 
 class Cart extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToAuthWindow = () => {
-    this.toggleDisplay(displayNames.progress);
-    this.toggleDisplay(displayNames.cart);
-    this.toggleDisplay(displayNames.authWindow);
+    this.toggleDisplay(progress);
+    this.toggleDisplay(cart);
+    this.toggleDisplay(authWindow);
   }
 
   goToShipping = () => {
-    this.toggleDisplay(displayNames.cart);
-    this.toggleDisplay(displayNames.shipping);
+    this.toggleDisplay(cart);
+    this.toggleDisplay(shipping);
   }
 
   goToStore = () => {
-    this.toggleDisplay(displayNames.progress);
-    this.toggleDisplay(displayNames.cart);
-    this.toggleDisplay(displayNames.store);
+    this.toggleDisplay(progress);
+    this.toggleDisplay(cart);
+    this.toggleDisplay(store);
   }
 
   render() {
+    const { info, removeFromCart, changeQuantity, getCartTotal, getShipping, getDiscount, checkPromoCode } = this.props;
+    const { loggedInUser } = info;
+
     return (
       <div>
-        {isEmpty(this.props.info.loggedInUser) &&
+        {isEmpty(loggedInUser) &&
           <div className={s.emptyCartWindow}>
             <h2>Please log in to add an item to the cart.</h2>
             <button onClick={this.goToAuthWindow}>Login/Sign Up</button>
           </div>
         }
-        {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size === 0) &&
+        {(!isEmpty(loggedInUser) && loggedInUser.cart.size === 0) &&
           <div className={s.emptyCartWindow}>
             <h2>Your cart is currently empty. Add an item.</h2>
             <button onClick={this.goToStore}>Go to Store</button>
           </div>
         }
-        {(!isEmpty(this.props.info.loggedInUser) && this.props.info.loggedInUser.cart.size > 0) &&
+        {(!isEmpty(loggedInUser) && loggedInUser.cart.size > 0) &&
           <div className={s.cartWindow}>
             <CartItems
-              info={this.props.info}
-              removeFromCart={this.props.removeFromCart}
-              changeQuantity={this.props.changeQuantity}
+              info={info}
+              removeFromCart={removeFromCart}
+              changeQuantity={changeQuantity}
             />
             <Summary
-              info={this.props.info}
+              info={info}
               goToShipping={this.goToShipping}
               goToStore={this.goToStore}
-              getCartTotal={this.props.getCartTotal}
-              getShipping={this.props.getShipping}
-              getDiscount={this.props.getDiscount}
-              checkPromoCode={this.props.checkPromoCode}
+              getCartTotal={getCartTotal}
+              getShipping={getShipping}
+              getDiscount={getDiscount}
+              checkPromoCode={checkPromoCode}
             />
           </div>
         }

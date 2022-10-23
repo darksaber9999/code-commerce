@@ -7,41 +7,43 @@ import s from "./Summary.module.css";
 class Summary extends React.Component {
 
   render() {
+    const { info, shippingInfo, getCartTotal, getDiscount, getShipping, checkPromoCode, goToStore, goToShipping, findDebitCardType } = this.props;
+    const { loggedInUser, processState: { cart, payment, confirm } } = info;
 
     return (
       <div className={s.summaryWindow}>
         <h3>Summary</h3>
         <CartSummary
-          info={this.props.info}
+          info={info}
           shippingInfo={
-            this.props.shippingInfo ?
-              this.props.shippingInfo :
-              (this.props.info.loggedInUser.shippingInfo) ?
-                this.props.info.loggedInUser.shippingInfo :
+            shippingInfo ?
+              shippingInfo :
+              (loggedInUser.shippingInfo) ?
+                loggedInUser.shippingInfo :
                 null
           }
-          getCartTotal={this.props.getCartTotal}
-          getShipping={this.props.getShipping}
-          getDiscount={this.props.getDiscount}
-          checkPromoCode={this.props.checkPromoCode}
+          getCartTotal={getCartTotal}
+          getShipping={getShipping}
+          getDiscount={getDiscount}
+          checkPromoCode={checkPromoCode}
         />
-        <div className={this.props.info.processState.cart.isDisplayed ? 'btn' : s.hideButtons}>
-          <button onClick={this.props.goToStore}>Back to Store</button>
-          <button onClick={this.props.goToShipping}>Checkout</button>
+        <div className={cart.isDisplayed ? 'btn' : s.hideButtons}>
+          <button onClick={goToStore}>Back to Store</button>
+          <button onClick={goToShipping}>Checkout</button>
         </div>
-        {(this.props.info.processState.payment.isDisplayed ||
-          this.props.info.processState.confirm.isDisplayed) &&
+        {(payment.isDisplayed ||
+          confirm.isDisplayed) &&
           <ShippingSummary
-            info={this.props.info}
+            info={info}
           />
         }
-        {this.props.info.processState.confirm.isDisplayed &&
+        {confirm.isDisplayed &&
           <PaymentSummary
-            info={this.props.info}
-            findDebitCardType={this.props.findDebitCardType}
-            getCartTotal={this.props.getCartTotal}
-            getShipping={this.props.getShipping}
-            getDiscount={this.props.getDiscount}
+            info={info}
+            findDebitCardType={findDebitCardType}
+            getCartTotal={getCartTotal}
+            getShipping={getShipping}
+            getDiscount={getDiscount}
           />
         }
       </div>

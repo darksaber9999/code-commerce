@@ -1,9 +1,11 @@
 import React from "react";
+import Summary from "../Summary/Summary";
+import s from "./Payment.module.css";
 import { CARD, CARDICON, displayNames, OTHERCARDS } from "../constants";
 import { INIT_PAYMENT_CARD } from "../initialState";
-import Summary from "../Summary/Summary";
 import { cardNumberValidation, onlyTextValidation, securityCodeValidation } from "../validations";
-import s from "./Payment.module.css";
+
+const { payment, cart, confirm } = displayNames;
 
 class Payment extends React.Component {
   constructor(props) {
@@ -19,13 +21,13 @@ class Payment extends React.Component {
   toggleDisplay = (window) => this.props.toggleDisplay(window);
 
   goToCart = () => {
-    this.toggleDisplay(displayNames.payment);
-    this.toggleDisplay(displayNames.cart);
+    this.toggleDisplay(payment);
+    this.toggleDisplay(cart);
   }
 
   goToConfirm = () => {
-    this.toggleDisplay(displayNames.payment);
-    this.toggleDisplay(displayNames.confirm);
+    this.toggleDisplay(payment);
+    this.toggleDisplay(confirm);
   }
 
   getGrandTotal = () => {
@@ -143,6 +145,7 @@ class Payment extends React.Component {
 
   render() {
     const { error } = this.state;
+    const { info, getCartTotal, getDiscount, getShipping } = this.props;
     const grandTotal = this.getGrandTotal();
 
     const inputData = [
@@ -231,10 +234,10 @@ class Payment extends React.Component {
           </form>
         </div>
         <Summary
-          info={this.props.info}
-          getCartTotal={this.props.getCartTotal}
-          getShipping={this.props.getShipping}
-          getDiscount={this.props.getDiscount}
+          info={info}
+          getCartTotal={getCartTotal}
+          getShipping={getShipping}
+          getDiscount={getDiscount}
         />
       </div>
     )

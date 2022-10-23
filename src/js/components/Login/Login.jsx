@@ -1,7 +1,7 @@
 import React from "react";
+import s from "./Login.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import s from "./Login.module.css";
 
 
 class Login extends React.Component {

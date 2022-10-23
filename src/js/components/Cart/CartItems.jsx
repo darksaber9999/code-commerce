@@ -1,7 +1,6 @@
 import React from "react";
-import { storeItemTitles } from "../constants";
 import s from "./CartItems.module.css";
-
+import { storeItemTitles } from "../constants";
 
 class CartItems extends React.Component {
 

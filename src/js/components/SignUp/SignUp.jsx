@@ -1,9 +1,9 @@
 import React from "react";
+import s from "./SignUp.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { INIT_USER_CARD } from "../initialState";
 import { checkForDuplicateUser, onlyNumbersValidation, onlyTextValidation, passwordMatchValidation } from "../validations";
-import s from "./SignUp.module.css";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -113,7 +113,7 @@ class SignUp extends React.Component {
   }
 
   render() {
-    const { error } = this.state;
+    const { error, signUpData } = this.state;
 
     const inputData = [
       { key: 1, id: 'emailAddress', label: 'Email Address', name: 'emailAddress', type: 'email', error: 'emailAddressError' },
@@ -146,7 +146,7 @@ class SignUp extends React.Component {
                 placeholder={item.label}
                 type={item.type}
                 name={item.name}
-                value={this.state.signUpData && this.state.signUpData[item.name]}
+                value={signUpData && signUpData[item.name]}
                 onChange={this.handleChange}
                 onBlur={this.handleBlur}
                 maxLength={item.maxLength ? item.maxLength : null}
