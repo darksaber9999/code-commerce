@@ -7,4 +7,6 @@
 .cardImage {
   width: 50px;
   height: 33px;
+  position: relative;
+  top: 12px;
 }
