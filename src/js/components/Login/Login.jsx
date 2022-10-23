@@ -33,6 +33,8 @@ class Login extends React.Component {
 
   handleBlur = ({ target: { name, value } }) => this.handleValidations(name, value);
 
+  handleFacebookButton = (e) => e.preventDefault();
+
   checkErrorBeforeSave = (email, password) => {
     let errorValue = {};
     let isError = false;
@@ -130,7 +132,7 @@ class Login extends React.Component {
               ) : null}
             </label>
           )) : null}
-          <button className={s.facebookButton}><span>f</span>Login with Facebook</button>
+          <button className={s.facebookButton} onClick={this.handleFacebookButton}><span>f</span>Login with Facebook</button>
           <input type="submit" />
         </form>
       </div>
