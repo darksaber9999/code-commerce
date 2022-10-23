@@ -4,6 +4,12 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class CartSummary extends React.Component {
+  onKeyUp = (event) => {
+    if (event.code.includes('Enter')) {
+      this.props.checkPromoCode();
+    }
+  }
+
   render() {
     const { getCartTotal, getDiscount, shippingInfo, getShipping, info, checkPromoCode } = this.props;
     const { processState: { cart } } = info;
@@ -34,6 +40,7 @@ class CartSummary extends React.Component {
             placeholder="Promo Code"
             type="text"
             name="promo"
+            onKeyUp={this.onKeyUp}
           />
           <FontAwesomeIcon
             icon={faCheck}
