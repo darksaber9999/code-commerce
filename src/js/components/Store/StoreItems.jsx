@@ -3,10 +3,19 @@ import { storeItemTitles } from "../constants";
 import s from "./StoreItems.module.css";
 
 class StoreItems extends React.Component {
+  animateAddToCartButton = (item) => {
+    document.getElementById(item).innerHTML = 'Item Added';
+    const changeBack = setTimeout(() => document.getElementById(item).innerHTML = 'Add to Cart', 1000);
+  }
 
-  addToCart = (e) => {
+  addToCart = (item) => {
+    this.props.addToCart(item.toLowerCase());
+    this.animateAddToCartButton(item);
+  }
+
+  handleAddToCart = (e) => {
     this.props.info.isLoggedIn ?
-      this.props.addToCart(e.target.dataset.item.toLowerCase()) :
+      this.addToCart(e.target.dataset.item) :
       this.props.goToAuthWindow();
   }
 
@@ -28,7 +37,7 @@ class StoreItems extends React.Component {
                 <h3>{title}</h3>
                 <p>{amountOfWork}</p>
                 <h4>${price} ea.</h4>
-                <button data-item={title} onClick={this.addToCart}>Add to Cart</button>
+                <button data-item={title} id={title} onClick={this.handleAddToCart}>Add to Cart</button>
               </div>
             </div>
           )
