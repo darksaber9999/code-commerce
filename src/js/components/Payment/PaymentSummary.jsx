@@ -18,7 +18,7 @@ class PaymentSummary extends React.Component {
           src={CARDICON[this.props.findDebitCardType(this.props.info.loggedInUser.paymentInfo.cardNumber)]}
           alt="card"
         />} ending in {lastFour}</p>
-        <p>Total payment: ${grandTotal}</p>
+        <p>Total payment: ${grandTotal.toFixed(2)}</p>
       </div>
     )
   }

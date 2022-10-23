@@ -93,7 +93,7 @@ class CodeCommerce extends React.Component {
     return total;
   }
 
-  getShipping = (shipping) => shipping === 'express' ? 29.99 : 0.00;
+  getShipping = (shipping) => shipping === 'express' ? 29.99 : 0;
 
   getDiscount = () => this.getCartTotal() * this.state.loggedInUser.promoDiscount;
 

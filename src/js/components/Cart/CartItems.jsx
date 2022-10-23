@@ -43,7 +43,7 @@ class CartItems extends React.Component {
                     <h4>{quantity}</h4>
                     <button id="add" className={val} onClick={this.changeQuantity}>+</button>
                   </span>
-                  <h4>${price * quantity}</h4>
+                  <h4>${(price * quantity).toFixed(2)}</h4>
                 </div>
               </div>
             )

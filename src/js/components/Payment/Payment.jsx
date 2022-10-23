@@ -29,7 +29,7 @@ class Payment extends React.Component {
   }
 
   getGrandTotal = () => {
-    return `$${this.props.getCartTotal() - this.props.getDiscount() + this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping)}`;
+    return this.props.getCartTotal() - this.props.getDiscount() + this.props.getShipping(this.props.info.loggedInUser.shippingInfo.shipping);
   }
 
   handleValidations = (type, value) => {
@@ -226,7 +226,7 @@ class Payment extends React.Component {
             </div>
             <div className="btn">
               <button onClick={this.goToCart}>Back to Cart</button>
-              <input type="submit" value={`Pay ${grandTotal}`} />
+              <input type="submit" value={`Pay $${grandTotal.toFixed(2)}`} />
             </div>
           </form>
         </div>

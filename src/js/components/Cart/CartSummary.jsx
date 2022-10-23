@@ -15,10 +15,10 @@ class CartSummary extends React.Component {
     return (
       <div className={s.cartSummaryWindow}>
         <div>
-          <h5>Cart Subtotal: ${total}</h5>
-          <h5>Discount: ${discount}</h5>
-          <h5>Shipping: ${shipping}</h5>
-          <h5>Cart Total: ${grandTotal}</h5>
+          <h5>Cart Subtotal: ${total.toFixed(2)}</h5>
+          <h5>Discount: ${discount.toFixed(2)}</h5>
+          <h5>Shipping: ${shipping.toFixed(2)}</h5>
+          <h5>Cart Total: ${grandTotal.toFixed(2)}</h5>
         </div>
         <label
           key='31'
