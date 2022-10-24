@@ -5,7 +5,7 @@ import s from "./StoreItems.module.css";
 class StoreItems extends React.Component {
   animateAddToCartButton = (item) => {
     document.getElementById(item).innerHTML = 'Item Added';
-    const changeBack = setTimeout(() => document.getElementById(item).innerHTML = 'Add to Cart', 1000);
+    setTimeout(() => document.getElementById(item).innerHTML = 'Add to Cart', 1000);
   }
 
   addToCart = (item) => {
