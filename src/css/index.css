@@ -96,7 +96,8 @@ input[type=submit] {
 }
 
 .btn button:nth-of-type(2),
-.btn input[type=submit] {
+.btn input[type=submit],
+.btn .inputSubmitButton {
   border-top-left-radius: initial;
   border-bottom-left-radius: initial;
 }

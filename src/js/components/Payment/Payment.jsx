@@ -229,7 +229,7 @@ class Payment extends React.Component {
             </div>
             <div className="btn">
               <button onClick={this.goToCart}>Back to Cart</button>
-              <input type="submit" value={`Pay $${grandTotal.toFixed(2)}`} />
+              <input className="inputSubmitButton" type="submit" value={`Pay $${grandTotal.toFixed(2)}`} />
             </div>
           </form>
         </div>

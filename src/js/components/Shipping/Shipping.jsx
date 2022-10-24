@@ -210,7 +210,7 @@ class Shipping extends React.Component {
             )) : null}
             <div className="btn">
               <button onClick={this.goToCart}>Back to Cart</button>
-              <input type="submit" value="Payment" />
+              <input className="inputSubmitButton" type="submit" value="Payment" />
             </div>
           </form>
         </div>
