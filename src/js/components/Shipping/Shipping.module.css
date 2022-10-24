@@ -8,7 +8,7 @@ label[for=expressShipping] {
   margin-bottom: 10px;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 550px) {
   .shippingWindow {
     flex-wrap: wrap;
     justify-content: center;
