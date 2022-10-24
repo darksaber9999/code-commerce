@@ -79,11 +79,7 @@ class CodeCommerce extends React.Component {
     const total = storeItemTitles.map((val) => {
       if (this.state.loggedInUser.cart.has(val)) {
         const { price } = this.state.storeItems[val];
-        const quantity = this.state.loggedInUser.cart.get(val)/*  / 2 */;
-
-        // Need to ask about this issue. Functions seem to be called twice throwing off the map totals
-        console.log('CHECK ME');
-
+        const quantity = this.state.loggedInUser.cart.get(val);
         return price * quantity;
       }
       return 0;

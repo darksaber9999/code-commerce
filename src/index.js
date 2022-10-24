@@ -6,9 +6,7 @@ import reportWebVitals from './js/testing/reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <CodeCommerce />
-  </React.StrictMode>
+  <CodeCommerce />
 );
 
 // If you want to start measuring performance in your app, pass a function
